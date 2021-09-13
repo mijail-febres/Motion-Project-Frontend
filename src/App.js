@@ -1,8 +1,9 @@
+import QuestionContainer from "./Pages/Login/QuestionTop";
 
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
+      <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/>
     </div>
   );
 }
