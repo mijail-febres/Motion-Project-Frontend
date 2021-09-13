@@ -9,10 +9,15 @@ const QContainer = styled.div `
     justify-content:space-between;
 `
 const QuestionContainer = ({label,value}) => {
+
+    const actionOnClick = () => {
+
+    }
+
     return (
         <QContainer>
             <label>{label}</label>
-            <button>{value}</button>
+            <button onClick={actionOnClick}>{value}</button>
         </QContainer>
     )
 }
