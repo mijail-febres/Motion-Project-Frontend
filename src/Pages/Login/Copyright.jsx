@@ -32,6 +32,9 @@ const CContainer = styled.div `
             background-position-y: center;
             background-size: contain;
             background-color: rgba(255,255,255,0);
+            :hover {
+                cursor: pointer;
+            }
         }
 
     }
@@ -52,12 +55,21 @@ const CContainer = styled.div `
     }
 `
 const CopyrightContainer = ({label}) => {
+    const redirectInstagram = () =>{
+        window.open('https://instagram.com/', '_blank');
+    }
+    const redirectFacebook = () =>{
+        window.open('https://www.facebook.com/', '_blank');
+    }
+    const redirectTwitter = () =>{
+        window.open('https://twitter.com/', '_blank');
+    }
     return (
         <CContainer>
             <div>
-                <button className='Button' id='twitter'></button>
-                <button className='Button' id='facebook'></button>
-                <button className='Button' id='instagram'></button>
+                <button className='Button' id='twitter' onClick = {redirectTwitter}></button>
+                <button className='Button' id='facebook' onClick = {redirectFacebook}></button>
+                <button className='Button' id='instagram' onClick = {redirectInstagram}></button>
             </div>
             <div id = 'Copyright'>
                 <span dangerouslySetInnerHTML={{ "__html": "&copy;" }}/>
