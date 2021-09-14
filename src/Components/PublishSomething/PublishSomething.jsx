@@ -219,7 +219,7 @@ const PublishContainer = ({label,value}) => {
                     <button className = 'uploadButtons' id='uploadLink'></button>
                 </div>
                 <div id ='rightBottom'>
-                    <button className = 'uploadButtons' id='publish'></button>
+                    <button className = 'uploadButtons' id='publish' onClick={handlePublishing}></button>
                 </div>
             </div>
         </PContainer>
