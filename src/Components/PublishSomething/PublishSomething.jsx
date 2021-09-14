@@ -7,6 +7,12 @@ import profileIcon from '../../Assets/images/users/jennifer.png'
 
 
 const PContainer = styled.div `
+    * {
+        border: none;
+        padding: 0;
+        margin : 0;
+        box-sizing: content-box;
+    }
     width: 30%;
     border:1px dotted black;
     display: flex;
@@ -16,23 +22,38 @@ const PContainer = styled.div `
 
     #header {
         width: 100%;
+        height: 30%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        border: 1px solid green;
+        #profileContainer {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            #profile {
+                width: 30px;
+                height: 30px;
+                border-radius: 15px;
+                background-image: url(${profileIcon});
+            }
+        }
+        #thoughts {
+            width: 80%;
+            #textArea {
+                width: 100%;
+                height: 100%;
+                max-height: 100%;
+                resize: none;
+            }
+        }
     }
 
     #footer {
         width: 100%;
         display: flex;
         justify-content: space-between;
-    }
-
-    #profile {
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        background-image: url(${profileIcon});
     }
 
     #publish {
@@ -65,6 +86,11 @@ const PContainer = styled.div `
         background-image: url(${linkIcon});
     }
 
+    .Sub-thumbnails-container {
+        width: 100%;
+        height: 100%;
+    }
+
     #growswithcontent {
         width: 100%;
         min-height: 80px;
@@ -74,12 +100,37 @@ const PContainer = styled.div `
         .Thumbnails-container {
             width: 70px;
             height: 70px;
+            display: flex;
             max-width : 70px;
             max-height: 70px;
         
-            .Thumbnail {
-                width: 100%;
-                height: 100%;
+            #img-container {
+                z-index : 0;
+                .Thumbnail {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            #button-container {
+                z-index : 1;
+                width: 70px;
+                height: 70px;
+                background-color: transparent;
+                display: flex;
+                position: absolute;
+                justify-content: flex-end;
+                #close {
+                    width: 20px;
+                    height: 20px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 10px;
+                    padding: 0;
+                    margin: 0;
+                    :hover {
+                        cursor: pointer;
+                    }
+                }
             }
         }
 
@@ -100,26 +151,48 @@ const PublishContainer = ({label,value}) => {
         uploadPictures(pictures.concat([...fileArray])); // modifying pictures
     }
 
+    const handleEliminatePicture = (ind) => { // Handels the elimination of a picture
+        const pictureArray = pictures.filter((picture,index) => index !== ind ? picture : null);
+        uploadPictures([...pictureArray]);
+    }
+
+    const handlePublishing = () => { // This passes photos, and a main comment to the publisher form
+        // Not implemented yet, waiting for a centralized store
+    }
+
     return (
         <PContainer>
             <div id='header'>
-                <button className = 'uploadButtons' id='profile'></button>
-                <div id='thoughts'>
-                    <p> Something</p>
+                <div id='profileContainer'>
+                    <button className = 'uploadButtons' id='profile'></button>
                 </div>
+                <div id='thoughts'>
+                    <label htmlFor="textArea" id="ruleslabel"></label>
+                    <textarea id='textArea' rows='3' placeholder='Write something ...'></textarea>
+                </div>
+
+
             </div>
             <div id='growswithcontent'> {/* this will show thumbnails of uploaded photos*/}
                 {   pictures.length > 0 ?
                         pictures.map((picture, ind) => {
                             return (
-                                <div key={ind} 
-                                     className='Thumbnails-container' 
-                                >
-                                    <img 
-                                        className = 'Thumbnail'
-                                        src={URL.createObjectURL(picture)} 
-                                        alt='thumbnail'
-                                    />
+                                <div key={ind} className='Thumbnails-container'>
+                                    <div  
+                                        className='Sub-thumbnails-container' 
+                                        id ='img-container'
+                                    >
+                                        <img 
+                                            className = 'Thumbnail'
+                                            src={URL.createObjectURL(picture)} 
+                                            alt='thumbnail'
+                                        />
+                                    </div>
+                                    <div className = 'Sub-thumbnails-container'
+                                        id = 'button-container'
+                                    >
+                                        <button id='close' onClick={() => handleEliminatePicture(ind)}>x</button>
+                                    </div>
                                 </div>
                             )
                         })
@@ -129,7 +202,7 @@ const PublishContainer = ({label,value}) => {
             </div>
             <div id='footer'>
                 <div id='leftBottom'>
-                    <button 
+                    <button // this is the button that gets the job done!
                         className = 'uploadButtons'
                         id='uploadPicture'
                         onClick = {handleUploadPhoto}
