@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import profileIcon from '../../Assets/images/users/jennifer.png'
 import menuIcon from '../../Assets/svgs/menu.svg'
 import likeIcon from '../../Assets/svgs/heart.svg'
 import shareIcon from '../../Assets/svgs/share.svg'
-import picturePost from '../../Assets/images/feedPics/image1.png'
-import profileUser1 from '../../Assets/images/users/alber.png'
-import profileUser2 from '../../Assets/images/users/leticia.png'
-import profileUser3 from '../../Assets/images/users/patricia.png'
+import picturePost from '../../Assets/images/feedPics/image1.png' // This should come from the post information (possible an object)
+import profileUser1 from '../../Assets/images/users/alber.png'     // This should come from the post information
+import profileUser2 from '../../Assets/images/users/leticia.png'   // This should come from the post information
+import profileUser3 from '../../Assets/images/users/patricia.png'  // This should come from the post information
+import editIcon from '../../Assets/svgs/edit_icon.svg'
+import deleteIcon from '../../Assets/svgs/trash_can_icon.svg'
 
+const width = '800px';
+const height = '500px';
 const PostDetailsContainer = styled.div `
     * {
         margin : 0;
@@ -18,8 +22,10 @@ const PostDetailsContainer = styled.div `
     }
 
     display: flex;
-    width: 800px;
-    height:500px ;
+    /* width: 800px;
+    height:500px ; */
+    width: ${width};
+    height: ${height};
 
     #panelLeft {
         width : 60%;
@@ -41,6 +47,7 @@ const PostDetailsContainer = styled.div `
             width: 100%;
             height: 20%;
             display: grid;
+            position: relative;
             grid-template-columns: 20%  70% 10%;
             grid-template-rows: 25% 25% 50%;
             grid-template-areas: 'profile name menu'
@@ -104,6 +111,33 @@ const PostDetailsContainer = styled.div `
                     resize: none;
                     font-size: 15px;
                 }
+            }
+            #popup-menu {
+                width: 40%;
+                height: 80%;
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                left : 105%;
+
+                .ButtonMenu {
+                    height: 50%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    :hover{
+                        cursor: pointer;
+                    }
+                    .MenuImg {
+                        height: 25px;
+                        width : 25px;
+                    }
+                }
+                #edit {
+                    border-bottom: 1px solid gray;
+                }
+
             }
         }
 
@@ -204,6 +238,9 @@ const PostDetailsContainer = styled.div `
 `
 
 const PostDetails = () =>{
+
+    const [isMenuShown, menuShow] = useState(false);
+
     const otherUsers = [profileUser1, profileUser2, profileUser3];// This is only an example, this should come from the user status
 
     const handleLike = () => {
@@ -213,6 +250,21 @@ const PostDetails = () =>{
     const handleShare = () => {
 
     }
+
+    const handleMenu = () => { // show or hide popup menu
+        menuShow(!isMenuShown);
+    }
+
+    const handleDelete = () => { // should eliminate this entry from the publications array
+        //Not implemente yet
+        menuShow(!isMenuShown);
+    }
+
+    const handleEdit = () => { // should open the form for publishing something (PublishSomething.jsx)
+        //Not implemente yet
+        menuShow(!isMenuShown);
+    }
+
     return (
         <PostDetailsContainer>
             <div id = 'panelLeft'>
@@ -233,8 +285,20 @@ const PostDetails = () =>{
                         <textarea id='textArea' rows='3' placeholder={'What\'s on your Mind, Jeniffer?'}></textarea>
                     </div> 
                     <div id = 'menuContainer'>
-                        <button id='menu' className='ProfileButtons'></button>
-                    </div> 
+                        <button id='menu' className='ProfileButtons' onClick = {handleMenu}></button>
+                    </div>
+                    { isMenuShown? // popup menu is or is not shown
+                        <div id = 'popup-menu'>
+                            <button className = 'ButtonMenu' id='edit' onClick={handleEdit}>
+                                <img className='MenuImg' src={editIcon} alt='icon' />
+                                Edit
+                            </button>
+                            <button className = 'ButtonMenu' id='delete' onClick={handleDelete}>
+                                <img className='MenuImg' src={deleteIcon} alt='icon'/>
+                                Delete
+                            </button>
+                        </div>
+                    :null}
                 </div>
                 <div id='body'>
 
