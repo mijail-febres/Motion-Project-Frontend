@@ -1,20 +1,34 @@
 import React from 'react'
-import SignUpConfirm from './SignUpConfirm'
-import SignUpForm from './SignUpForm'
-import SignUpVerifiy from './SignUpVerifiy'
-import LoginForm from './LoginForm';
+import styled from 'styled-components'
+import LoginForm from '../../Components/Login/Loginform/LoginForm'
+import QuestionContainer from '../../Components/Login/QuestionTop/QuestionTop'
+import Leftside from '../../Components/Login/Leftside/Leftside'
+// import SignUpConfirm from './SignUpConfirm'
+// import SignUpForm from './SignUpForm'
+// import SignUpVerifiy from './SignUpVerifiy'
+import Rightside from '../../Components/Login/Rightside/Rightside'
+
 
 function Login() {
     return (
         <div>
-            {/* these 3 will be switched between when signing up */}
-            <SignUpForm />
-            <SignUpConfirm />
-            <SignUpVerifiy />
-            {/* these 3 will be switched between when signing up */}
-            <LoginForm />
+                <BackgroundStyle>
+                    <Leftside />
+                    <Rightside>
+                        <QuestionContainer />
+                        <LoginForm />
+                    </Rightside>
+                </BackgroundStyle>
         </div>
     );
 }
+
+const BackgroundStyle = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+`
 
 export default Login;
