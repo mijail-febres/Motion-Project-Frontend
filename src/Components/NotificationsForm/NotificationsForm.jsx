@@ -26,7 +26,6 @@ const NotificationsContainer = styled.div `
     .MainContainers {
         width: 100%;
         height: 50%;
-        border: 1px solid black;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -39,20 +38,17 @@ const NotificationsContainer = styled.div `
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
-        border: 1px solid green;
     }
     .Received {
         height: 50px;
         width: 100%;
         display: flex;
-        border: 1px solid blue;
         justify-content: center;
         align-items: center;
         .AvatarR {
             width: 20%;
             height: 100%;
             display: flex;
-            border: 1px solid blue;
         }
         .NamesR {
             width: 100%;
@@ -72,7 +68,6 @@ const NotificationsContainer = styled.div `
             justify-content: center;
             align-items: center;
 
-            border: 1px solid blue;
             .ButtonR {
                 width: 30px;
                 height: 30px;
