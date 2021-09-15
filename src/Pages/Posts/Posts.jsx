@@ -4,39 +4,49 @@ import ImagePost from '../../Components/Posts/ImagePost/ImagePost'
 import NewPost from '../../Components/Posts/NewPost/NewPost'
 import RepostPost from '../../Components/Posts/RepostPost/RepostPost'
 import TextPost from '../../Components/Posts/TextPost/TextPost'
+import SearchIcon from '../../Assets/svgs/search_icon.svg'
+import { MainPostsDiv, NavButtonWrapper, PostDisplayWrapper, PostsNavWrapper, SearchLabel } from './PostsStyles'
+import Masonry from 'react-masonry-css'
 
 function Posts() {
     return (
-        <div className='postsMainDiv'>
+        <MainPostsDiv>
 
-            <div className='PostsNavWrapper' >
+            <PostsNavWrapper >
 
-                <div className='SearchWrapper' >
-                    <input type="search" placeholder='Search Posts' />
-                </div>
+                <SearchLabel >
+                    <img src={SearchIcon} alt="" />
+                    <input type="search" placeholder='Search Posts...' />
+                </SearchLabel>
 
-                <div className='navButtonWrapper' >
+                <NavButtonWrapper >
                     <button>Liked</button>
                     <button>Friends</button>
                     <button>Follow</button>
-                </div>
+                </NavButtonWrapper>
+            </PostsNavWrapper>
 
-            </div> 
 
-            <hr />
+            <PostDisplayWrapper >
 
-            <div className='postsWrapper' >
+            <Masonry
+            breakpointCols={2}
+            className="Posts-masonry-grid"
+            columnClassName="Posts-masonry-grid_column"
+            >
+
                 <NewPost />
-                {/* <TextPost /> */}
-                {/* <ImagePost /> */}
+                <TextPost />
+                <ImagePost />
                 <GalleryPost />
-                {/* <RepostPost /> */}
-            </div>
+                <RepostPost />
+            </Masonry>
+            </PostDisplayWrapper>
 
 
 
 
-        </div>
+        </MainPostsDiv>
     )
 }
 

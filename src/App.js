@@ -15,7 +15,7 @@ const nNotif = 10; // just to test how notifications are shown. This works nicel
 function App() {
   return (
     <div className="App">
-      <NotificationsForm/>
+      {/* <GlobalStyle />
       <MainProfileCard/>
       <ProfileCard/> 
       <PostDetails/>
@@ -24,7 +24,8 @@ function App() {
       <MasterHeader NumberOfNotifications = {nNotif}/>
       <CopyrightContainer label ={'Motion 2018. All rights reserved'}/>
       <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/>
-      <Login />
+      <Login /> */}
+      <Posts />
     </div>
   );
 }
