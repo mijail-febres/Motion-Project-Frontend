@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import avatarIcon from '../../Assets/svgs/avatar.svg'
-import passwordIcon from '../../Assets/svgs/password.svg'
+import avatarIcon from '../../../Assets/svgs/avatar.svg'
+import passwordIcon from '../../../Assets/svgs/password.svg'
 
 
 export const SignInContainer = styled.form`
