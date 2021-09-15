@@ -7,12 +7,14 @@ import PublishContainer from './Components/PublishSomething/PublishSomething';
 import PostDetails from './Components/PostDetails/PostDetails'
 import Posts from './Pages/Posts/Posts';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
+import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
 function App() {
   return (
     <div className="App">
+      <MainProfileCard/>
       <ProfileCard/>
       <PostDetails/>
       <GlobalStyle />
