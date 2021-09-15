@@ -5,9 +5,12 @@ import { PostWrapper, PostContentWrapper } from '../../../Pages/Posts/PostsStyle
 import PlaceholderImage from '../../../Assets/images/feedPics/large_image.png'
 import { ImagePostWrapper } from './ImagePostStyle'
 
-function ImagePost() {
+function ImagePost(props) {
+
+    console.log(props.type)
+
     return (
-        <PostWrapper>
+        <PostWrapper type={props.type} >
                 <PostHeader />
 
             <PostContentWrapper>
@@ -17,7 +20,7 @@ function ImagePost() {
                 </ImagePostWrapper>
             </PostContentWrapper>
 
-                <PostFooter />
+                {props.type === !'isShared' && <PostFooter />}
         </PostWrapper>
     )
 }
