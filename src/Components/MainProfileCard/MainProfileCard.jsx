@@ -154,11 +154,11 @@ const MainProfileCard = () => {
                 <span id='name'>Jeniffer</span>
                 <span id='location'>Zürich Switzerland</span>
                 {ownProfile ? // When it is your own account
-                    <div class='ProfileButtons' id='editButton'>
+                    <div className='ProfileButtons' id='editButton'>
                         <button onClick={handleEditProfile} className = 'Buttons' id='editProfile'>EDIT PROFILE</button>
                     </div>
                 : // when it's someone else's account
-                    <div class='ProfileButtons' id='followButtons'>
+                    <div className='ProfileButtons' id='followButtons'>
                         <button onClick={handleFollow} className = 'Buttons' id='follow'>FOLLOW</button>
                         <button onClick={handleAddFriend} className = 'Buttons' id='addFriend'>ADD FRIEND</button>
                     </div>
@@ -173,9 +173,9 @@ const MainProfileCard = () => {
             <div id='thingsILike'>
                 <div id='tags'>
                     {
-                        keyWords.map((key,ind) => {
+                        keyWords.map((keyInf,ind) => {
                             return (
-                                <button key={ind} className='tagButtons'> {key} </button>
+                                <button key={ind} className='tagButtons'> {keyInf} </button>
                             )
                         })
                     }
@@ -185,7 +185,7 @@ const MainProfileCard = () => {
                 {
                     statistics.map((item,ind) => {
                         return (
-                            <div key='ind' className='Div-statistics' onClick={() => handleOnClickDivs(ind)}>
+                            <div key={ind} className='Div-statistics' onClick={() => handleOnClickDivs(ind)}>
                                 <span>{statisticsNumbers[ind]}</span>
                                 <span>{item}</span>
                             </div>
