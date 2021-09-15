@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import sendButton from '../../Assets/svgs/send_button.svg';
 import linkIcon from '../../Assets/svgs/link_icon.svg';
@@ -140,7 +140,7 @@ const PublishContainer = ({label,value}) => {
 
     const [pictures, uploadPictures] = useState([]);
 
-    const hiddenFileInput = React.useRef(null);
+    const hiddenFileInput = useRef(null);
 
     const handleUploadPhoto = () => {
         hiddenFileInput.current.click(); // Hijacks the click from the input element
@@ -219,7 +219,7 @@ const PublishContainer = ({label,value}) => {
                     <button className = 'uploadButtons' id='uploadLink'></button>
                 </div>
                 <div id ='rightBottom'>
-                    <button className = 'uploadButtons' id='publish'></button>
+                    <button className = 'uploadButtons' id='publish' onClick={handlePublishing}></button>
                 </div>
             </div>
         </PContainer>
