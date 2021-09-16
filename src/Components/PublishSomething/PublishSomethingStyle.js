@@ -4,19 +4,36 @@ import pictureIcon from '../../Assets/svgs/upload_picture.svg';
 import profileIcon from '../../Assets/images/users/jennifer.png'
 import styled from "styled-components";
 
-const PContainer = styled.div `
+const width = '40%'
+
+export const PublishBlackout = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-color: #16161690;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5;
+`
+
+export const PContainer = styled.div `
     * {
         border: none;
         padding: 0;
         margin : 0;
         box-sizing: content-box;
     }
-    width: 30%;
+    width: ${width};
+    background-color: white;
     border:1px dotted black;
     display: flex;
+    position: fixed;
+    left: calc(50vw - (${width} / 2));
+    top: 20vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 11;
 
     #header {
         width: 100%;
@@ -134,4 +151,3 @@ const PContainer = styled.div `
 
     }
 `
-export default PContainer;

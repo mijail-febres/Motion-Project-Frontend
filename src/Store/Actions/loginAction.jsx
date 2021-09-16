@@ -1,35 +1,43 @@
 import { USER_LOGIN } from "./actionTypes";
+import { useDispatch } from "react-redux";
 
-export const baseUrl = 'https://motion.propulsion-home.ch/backend/api'
+export const baseUrl = 'https://motion.propulsion-home.ch'
 
 export const userLoginAction = user => ({
     type: USER_LOGIN,
     payload: user
 });
 
-export const userLogin = credentials => async (dispatch, getState) => {
+export const userLogin = async (user, password) => {
+    console.log('ok')
     const headers = new Headers({
         'Content-Type': 'application/json'
     });
 
-    const body = JSON.stringify(credentials);
+    const body = {
+            "email": user,
+            "password": password,
+        };
+
+    const method = 'POST'
 
     const config = {
+        method,
         headers,
-        body,
-        method: 'POST'
+        body: JSON.stringify(body),
     };
 
-    const response = await fetch(`${ baseUrl }/auth/token`, config);
+    const response = await fetch(`${ baseUrl }/backend/api/auth/token/`, config);
     const data = await response.json();
 
     if(response.status === 200) {
         const { access } = data;
+        console.log(access)
         localStorage.setItem('token', access)
-        dispatch(userLoginAction({ user: data, authenticated: true}));
+        // dispatch(userLoginAction({ user: data, authenticated: true}));
         return null;
     }
-    dispatch(userLogin({ user: '', authenticated: false}));
+    // dispatch(userLogin({ user: '', authenticated: false}));
 
     return data;
 };

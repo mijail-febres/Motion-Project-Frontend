@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, useSelector, useDispatch } from "react";
-import PContainer from './PublishSomethingStyle';
+import {PContainer, PublishBlackout } from './PublishSomethingStyle';
 
 // const tokenSelector = (state) => {
 //     return state.token;
 // }
 
-const PublishContainer = ({label,value}) => {
+const PublishContainer = (props) => {
     const[user,setUser] = useState('mijail.febres@gmail.com')
     const[pass,setPass] = useState('algunpassword')
     const[token,setToken] = useState(null)
@@ -60,8 +60,8 @@ const PublishContainer = ({label,value}) => {
         });
 
         const body = {  // body
-            'email': user,
-            'password': pass,
+            'email': 'patrickmzimmermann@gmail.com',
+            'password': 'test123',
         }
 
         const config = { // configuration
@@ -109,6 +109,7 @@ const PublishContainer = ({label,value}) => {
 
     }
     return (
+        <div>
         <PContainer>
             <div id='header'>
                 <div id='profileContainer'>
@@ -171,6 +172,8 @@ const PublishContainer = ({label,value}) => {
                 </div>
             </div>
         </PContainer>
+        <PublishBlackout onClick={props.showNewClick} />
+        </div>
     )
 }
 

@@ -1,23 +1,35 @@
 import { baseUrl } from "./loginAction";
 import { USER_REGISTRATION } from "./actionTypes";
 
-const validation = data => ({
+export const validation = data => ({
     type: USER_REGISTRATION,
     payload: data
 });
 
-const validationAction = userData => async (dispatch, getState) => {
+const validationAction = async (email, code, username, firstName, lastName, password, passwordRepeat) => {
+    console.log('ok')
     const headers = new Headers({
         'Content-Type': 'application/json'
     });
 
-    const body = JSON.stringify(userData);
-    const config = {
-        headers,
-        body,
-        method: 'PATCH'
+    const body = {
+        "email": email,
+        "username": username,
+        "code": code,
+        "password": password,
+        "password_repeat": passwordRepeat,
+        "first_name": firstName,
+        "last_name": lastName
     };
-    const response = await fetch(`${ baseUrl }/auth/registration/validation`, config);
+
+    const method = 'PATCH'
+
+    const config = {
+        method,
+        headers,
+        body: JSON.stringify(body),
+    };
+    const response = await fetch(`${ baseUrl }/backend/api/auth/registration/validation`, config);
     if(response.status === 200) return null;
     const data = await response.json();
     const keys =Object.keys(data)

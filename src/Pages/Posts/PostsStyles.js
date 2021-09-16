@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 
 export const MainPostsDiv = styled.div`
+    margin-top: 10vh;
     width: 60%;
     padding: 0 20%;
     background-color: #f5f5f5;
-`
+    `
 
 export const PostWrapper = styled.div`
-flex-basis: 30%;
+    flex-basis: 30%;
     margin: 20px 0px;
     width: auto;
     max-height: auto;
