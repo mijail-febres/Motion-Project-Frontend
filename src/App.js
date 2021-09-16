@@ -16,6 +16,7 @@ import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
 import NotificationsForm from './Components/NotificationsForm/NotificationsForm';
+import FindFriends from './Pages/FindFriends/FindFriends';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
@@ -25,11 +26,12 @@ function App() {
       {/* <PostDetails/> */}
       <GlobalStyle />
         <Router>
+          <FindFriends/>
           {/* <PublishContainer/> */}
           {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
-          <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
-          {/* <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
-          <Switch>
+          {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
+          <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
+          {/* <Switch>
             <Route path="/" exact component = { Login }>
               <Login />
             </Route>
@@ -42,7 +44,7 @@ function App() {
             <Route exact path="/signupverify" exact component = { SignUpVerifyPage }>
               <SignUpVerifyPage />
             </Route>
-          </Switch>
+          </Switch> */}
         </Router>
     </div>
   );

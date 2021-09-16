@@ -1,4 +1,3 @@
-// import React from "react";
 import styled from "styled-components";
 import MotionIcon from '../../../Assets/images/logo.png'
 import PostsIcon from '../../../Assets/images/posts_logo.png'
@@ -9,10 +8,13 @@ import MenuIcon from '../../../Assets/svgs/menu.svg'
 
 const HeaderContainer = styled.div `
     width: 100%;
-    height: 15%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    z-index: 10;
+    background-color: white;
 
     #left {
         width: 50%;
@@ -46,6 +48,7 @@ const HeaderContainer = styled.div `
         height: 100%;
         display: flex;
         justify-content: flex-end;
+        align-items: center;
 
         .ButtonBottom {
             width: 30px;
@@ -72,13 +75,20 @@ const HeaderContainer = styled.div `
     #ButtonNotification {
         background-image: url(${NotificationIcon});
     }
+
+    #containsNumber {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
     #ButtonNumberNotification{
         width : 20px;
         height: 20px;
-        border : none;
-        padding: 0;
+        border: none;
         border-radius: 50px;
         color: white;
+        top : 0;
     }
     #ButtonProfile {
         background-image: url(${ProfileIcon});
