@@ -1,144 +1,29 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
-import sendButton from '../../Assets/svgs/send_button.svg';
-import linkIcon from '../../Assets/svgs/link_icon.svg';
-import pictureIcon from '../../Assets/svgs/upload_picture.svg';
-import profileIcon from '../../Assets/images/users/jennifer.png'
+import React, { useState, useRef, useEffect, useSelector, useDispatch } from "react";
+import PContainer from './PublishSomethingStyle';
 
+// const tokenSelector = (state) => {
+//     return state.token;
+// }
 
-const PContainer = styled.div `
-    * {
-        border: none;
-        padding: 0;
-        margin : 0;
-        box-sizing: content-box;
-    }
-    width: 30%;
-    border:1px dotted black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    #header {
-        width: 100%;
-        height: 30%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        #profileContainer {
-            width: 20%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            #profile {
-                width: 30px;
-                height: 30px;
-                border-radius: 15px;
-                background-image: url(${profileIcon});
-            }
-        }
-        #thoughts {
-            width: 80%;
-            #textArea {
-                width: 100%;
-                height: 100%;
-                max-height: 100%;
-                resize: none;
-            }
-        }
-    }
-
-    #footer {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    #publish {
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        background-image: url(${sendButton});
-        background-size: 60%;
-    }
-
-    .uploadButtons {
-        width:  15px;
-        height: 15px;
-        border: none;
-        border-radius: 5px;
-        background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
-        background-size: 100%;
-        margin: 0px 5px;
-        :hover {
-            cursor: pointer;
-        }
-    }
-    #uploadPicture {
-        background-image: url(${pictureIcon});
-    }
-
-    #uploadLink {
-        background-image: url(${linkIcon});
-    }
-
-    .Sub-thumbnails-container {
-        width: 100%;
-        height: 100%;
-    }
-
-    #growswithcontent {
-        width: 100%;
-        min-height: 80px;
-        display: flex;
-        flex-wrap: wrap;
-
-        .Thumbnails-container {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            max-width : 70px;
-            max-height: 70px;
-        
-            #img-container {
-                z-index : 0;
-                .Thumbnail {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            #button-container {
-                z-index : 1;
-                width: 70px;
-                height: 70px;
-                background-color: transparent;
-                display: flex;
-                position: absolute;
-                justify-content: flex-end;
-                #close {
-                    width: 20px;
-                    height: 20px;
-                    border: none;
-                    border-radius: 10px;
-                    font-size: 10px;
-                    padding: 0;
-                    margin: 0;
-                    :hover {
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-
-    }
-`
 const PublishContainer = ({label,value}) => {
-
+    const[user,setUser] = useState('mijail.febres@gmail.com')
+    const[pass,setPass] = useState('algunpassword')
+    const[token,setToken] = useState(null)
+    const[contentPost,setContent] = useState('')
     const [pictures, uploadPictures] = useState([]);
+
+    // const dispatch = useDispatch();
+
+    // const token = useSelector(tokenSelector);
+
+    useEffect(() => {
+        const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        if (token) {
+            // dispatch(updateToken(token)) // updating token with hooks
+            setToken(token);
+        }
+    }, []);
+
 
     const hiddenFileInput = useRef(null);
 
@@ -157,9 +42,72 @@ const PublishContainer = ({label,value}) => {
     }
 
     const handlePublishing = () => { // This passes photos, and a main comment to the publisher form
-        // Not implemented yet, waiting for a centralized store
+        login();
+        publish();
     }
 
+    const handleText = (event) => {
+        setContent(event.target.value);
+    }
+
+    const login = async () => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/';
+
+        const method = 'POST'; // method
+
+        const headers = new Headers({  // headers
+            'Content-type': 'application/json'
+        });
+
+        const body = {  // body
+            'email': user,
+            'password': pass,
+        }
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+            body : JSON.stringify(body)
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+        localStorage.setItem('auth-token', data.access); // store token
+        // dispatch(updateToken(data.access)) // updating token with hooks
+        setToken(data.acces)
+
+    }
+
+    const publish = async () => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/social/posts/';
+
+        const method = 'POST'; // method
+
+        const headers = new Headers({  // headers
+            'Authorization': `Bearer ${token}`,
+        });
+
+        const formData = new FormData();
+
+        pictures.forEach(image => { // for pictures
+            formData.append('images',image)
+        })
+        formData.append('content', contentPost) // the content
+
+        const body = formData;
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+            body : body,
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+
+        // dispatch(getUserInfo(data)) // updating token with middleware
+
+    }
     return (
         <PContainer>
             <div id='header'>
@@ -168,7 +116,7 @@ const PublishContainer = ({label,value}) => {
                 </div>
                 <div id='thoughts'>
                     <label htmlFor="textArea" id="ruleslabel"></label>
-                    <textarea id='textArea' rows='3' placeholder='Write something ...'></textarea>
+                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText}></textarea>
                 </div>
 
 
