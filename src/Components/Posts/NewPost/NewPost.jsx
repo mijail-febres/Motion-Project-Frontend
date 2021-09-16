@@ -5,7 +5,7 @@ import { PostWrapper } from '../../../Pages/Posts/PostsStyles'
 import {NewPostWrapper, NewPostInput, NewPostButton, NewPostInputDiv, NewPostProfileImg, NewPostButtonWrapper} from './NewPostStyle'
 
 
-function NewPost() {
+function NewPost(props) {
 
     const [user, setUser] = useState('TEST Jennifer')
 
@@ -14,7 +14,7 @@ function NewPost() {
     }
 
     return (
-        <PostWrapper >
+        <PostWrapper onClick={props.showNewClick} >
             <NewPostWrapper>
                 
             <NewPostProfileImg src={Profile} alt="Profile" /> {/* this should be taken from the API later */}

@@ -26,7 +26,8 @@ function App() {
       {/* <PostDetails/> */}
       <GlobalStyle />
         <Router>
-          <FindFriends/>
+          {/* <FindFriends/> */}
+          <Posts />
           {/* <PublishContainer/> */}
           {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
           {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
