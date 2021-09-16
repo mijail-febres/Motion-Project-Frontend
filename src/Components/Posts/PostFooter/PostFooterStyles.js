@@ -6,28 +6,16 @@ export const PostFooterWrapper = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    `
+`
 
 export const FooterLabel = styled.label`
     display: flex;
     align-items: center;
-
+    cursor: pointer;
+    
     &:first-child {
         margin-right: 20px;
     }
-
-`
-
-export const LikeCounter = styled.p`
-    color: gray;
-    text-align: end;
-    flex-grow: 1;
-`
-
-export const FooterButton = styled.button`
-    border: transparent;
-    background-color: transparent;
-
     & img {
         fill: red;
         color: red;
@@ -42,5 +30,19 @@ export const FooterButton = styled.button`
             filter: brightness(100);
         }
     }
+    
+`
+
+export const LikeCounter = styled.p`
+    color: gray;
+    text-align: end;
+    flex-grow: 1;
+`
+
+export const FooterButton = styled.button`
+    border: transparent;
+    background-color: transparent;
+    cursor: pointer;
+
 `
 

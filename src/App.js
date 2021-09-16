@@ -13,7 +13,9 @@ import SignUpVerify from './Components/Login/SignUpVerify/SignUpVerify';
 import SignUpFormPage from './Pages/Signup/SignUpForm/SignUpFormPage';
 import SignUpConfirmPage from './Pages/Signup/SignUpConfirm/SignUpConfirmPage';
 import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
-
+import ProfileCard from './Components/ProfileCard/ProfileCard';
+import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
+import NotificationsForm from './Components/NotificationsForm/NotificationsForm';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
@@ -25,7 +27,7 @@ function App() {
         <Router>
           {/* <PublishContainer/> */}
           {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
-          <CopyrightContainer label ={'Motion 2018. All rights reserved'}/>
+          <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
           {/* <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
           <Switch>
             <Route path="/" exact component = { Login }>
