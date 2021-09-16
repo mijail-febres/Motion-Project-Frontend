@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SignUpVerifiy() {
+function SignUpVerify() {
     return (
         <div>
             <div className='instruction' >
@@ -31,4 +31,4 @@ function SignUpVerifiy() {
     )
 }
 
-export default SignUpVerifiy
+export default SignUpVerify
