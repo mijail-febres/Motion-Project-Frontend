@@ -2,23 +2,46 @@ import CopyrightContainer from './Pages/Login/Copyright';
 import MasterHeader from './Components/Posts/Header/Header';
 import Login from './Pages/Login/Login';
 import { GlobalStyle } from './Styles';
-import QuestionContainer from "./Pages/Login/QuestionTop";
+import QuestionContainer from './Components/Login/QuestionTop/QuestionTop';
 import PublishContainer from './Components/PublishSomething/PublishSomething';
 import PostDetails from './Components/PostDetails/PostDetails'
 import Posts from './Pages/Posts/Posts';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import SignUpConfirm from './Components/Login/SignUpConfirm/SignUpConfirm';
+import SignUpForm from './Components/Login/SignUpForm/SignUpForm';
+import SignUpVerify from './Components/Login/SignUpVerify/SignUpVerify';
+import SignUpFormPage from './Pages/Signup/SignUpForm/SignUpFormPage';
+import SignUpConfirmPage from './Pages/Signup/SignUpConfirm/SignUpConfirmPage';
+import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
+
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
 function App() {
   return (
     <div className="App">
-      <PostDetails/>
+      {/* <PostDetails/> */}
       <GlobalStyle />
-      <PublishContainer/>
-      <MasterHeader NumberOfNotifications = {nNotif}/>
-      <CopyrightContainer label ={'Motion 2018. All rights reserved'}/>
-      <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/>
-      <Login />
+        <Router>
+          {/* <PublishContainer/> */}
+          {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
+          <CopyrightContainer label ={'Motion 2018. All rights reserved'}/>
+          {/* <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
+          <Switch>
+            <Route path="/" exact component = { Login }>
+              <Login />
+            </Route>
+            <Route path="/signupform" exact component = { SignUpFormPage }>
+              <SignUpFormPage />
+            </Route>
+            <Route exact path="/signupconfirm" exact component = { SignUpConfirmPage }>
+              <SignUpConfirmPage />
+            </Route>
+            <Route exact path="/signupverify" exact component = { SignUpVerifyPage }>
+              <SignUpVerifyPage />
+            </Route>
+          </Switch>
+        </Router>
     </div>
   );
 }

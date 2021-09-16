@@ -1,5 +1,5 @@
 import React from 'react'
-import checkMark from '../../Assets/svgs/check-mark-circle-thin.svg'
+import checkMark from '../../../Assets/svgs/check-mark-circle-thin.svg'
 
 function SignUpConfirm() {
     return (

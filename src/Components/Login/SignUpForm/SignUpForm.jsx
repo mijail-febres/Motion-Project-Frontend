@@ -1,6 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { useHistory } from 'react-router';
+import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
 
 function SignUpForm() {
+    const history = useHistory();
+    const routeChange = () => {
+        let path = "./signupverify";
+        history.push(path)
+    }
     return (
         <div>
             <div className='instruction' >
@@ -12,7 +19,7 @@ function SignUpForm() {
             </div>
 
             <div className='buttonWrapper' >
-                <button>Continue</button>
+                <button onClick={routeChange}>Continue</button>
             </div>
 
 
