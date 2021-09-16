@@ -13,21 +13,25 @@ const MasterHeader = (props) => {
 
     const NumberOfNotifications = 3;
 
-    const handleOnClickMotion = () => {
+    const handleOnClickMotion = (props) => {
         setMotion(true)
         setPosts(false)
         setFindFriends(false)
+        props.handleSetMotion();
     }
-    const handleOnClickPosts = () => {
+    const handleOnClickPosts = (props) => {
         setMotion(false)
         setPosts(true)
         setFindFriends(false)
+        console.log(props)
+        props.handleSetPosts();
     }
-    const handleOnClickFindFriends = () => {
+    const handleOnClickFindFriends = (props) => {
         setMotion(false)
         setPosts(false)
         setFindFriends(true)
         props.handleGetPeople();
+        props.handleSetFindFriends();
     }
     const handleOnClickNotification = () => {
 
@@ -45,17 +49,17 @@ const MasterHeader = (props) => {
     return (
         <HeaderContainer>
             <div id='left'>
-                <div onClick={handleOnClickMotion} className = 'DivButtons' id='Motion' 
+                <div onClick={() => handleOnClickMotion(props)} className = 'DivButtons' id='Motion' 
                     style = {motion ? {borderBottom : '2px solid blue'}:{border : 'none'}}>
                     <button className='ButtonTop' id='ButtonMotion'></button>
                     <label>Motion</label>
                 </div>
-                <div onClick={handleOnClickPosts} className = 'DivButtons' id='Posts' 
+                <div onClick={()=>handleOnClickPosts(props)} className = 'DivButtons' id='Posts' 
                     style = {posts ? {borderBottom : '2px solid blue'}:{border : 'none'}}>
                     <button className='ButtonTop' id='ButtonPosts'></button>
                     <label>Posts</label>
                 </div>
-                <div onClick ={handleOnClickFindFriends} className = 'DivButtons' id='FindFriends'
+                <div onClick ={()=> handleOnClickFindFriends(props)} className = 'DivButtons' id='FindFriends'
                     style = {findFriends ? {borderBottom : '2px solid blue'}:{border :'none'}}>
                     <button className='ButtonTop' id='ButtonFindFriends'></button>
                     <label>Find Friends</label>

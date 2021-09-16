@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FindFriendsContainer = styled.div `
+const BackgroundContainer = styled.div `
     * {
         border: none;
         box-sizing: content-box;
@@ -15,5 +15,10 @@ const FindFriendsContainer = styled.div `
     background-color: rgba(0,0,0,0.2);
     margin: 20px 20px;
     padding : '100px 20px';
+
+    #rest {
+        width: 100%;
+        height: 100%;
+    }
 `
-export default FindFriendsContainer;
+export default BackgroundContainer;

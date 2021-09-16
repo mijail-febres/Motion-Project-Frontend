@@ -16,7 +16,8 @@ import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
 import NotificationsForm from './Components/NotificationsForm/NotificationsForm';
-import FindFriends from './Pages/FindFriends/FindFriends';
+import FindFriends from './Pages/Background/Background';
+import Background from './Pages/Background/Background';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
@@ -26,7 +27,8 @@ function App() {
       {/* <PostDetails/> */}
       <GlobalStyle />
         <Router>
-          <FindFriends/>
+          <Background/>
+          {/* <FindFriends/> */}
           {/* <PublishContainer/> */}
           {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
           {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
