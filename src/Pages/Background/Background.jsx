@@ -1,7 +1,7 @@
-import HeaderContainer from "../../Components/Posts/Header/Header"
 import BackgroundContainer from "./BackgroundStyle";
 import { useState,useEffect } from "react";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
+import MasterHeader from "../../Components/Posts/Header/Header";
 
 const Background = () => {
     const[user,setUser] = useState('mijail.febres@gmail.com')
@@ -72,7 +72,6 @@ const Background = () => {
         const newData = data.results.filter(item => {
             if (motion) {
                 if (item.banner) {
-                    console.log(item)
                     return item;
                 }
             }
@@ -116,11 +115,11 @@ const Background = () => {
             }
             >
             
-            <HeaderContainer 
-                handleSetPosts={handleSetPosts}
-                handleGetPeople={handleGetPeople}
-                handleSetMotion={handleSetMotion}
-                handleSetFindFriends= {handleSetFindFriends}
+            <MasterHeader 
+                handleSetPosts={handleSetPosts} 
+                handleGetPeople={handleGetPeople} 
+                handleSetMotion={handleSetMotion} 
+                handleSetFindFriends={handleSetFindFriends}
             />
             
             {motion ?

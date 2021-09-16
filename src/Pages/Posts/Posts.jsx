@@ -10,7 +10,8 @@ import Masonry from 'react-masonry-css'
 import PostDetails from '../../Components/PostDetails/PostDetails'
 import Header from '../../Components/Posts/Header/Header'
 import PublishContainer from '../../Components/PublishSomething/PublishSomething'
-
+import BackgroundContainer from "../Background/BackgroundStyle";
+import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 
 
 
@@ -19,6 +20,11 @@ function Posts() {
     const [posts, setPosts] = useState([])
     const [postDetails, setPostDetails] = useState({show: false, id: null})
     const [showNew, setShowNew] = useState(false)
+    const[motion,setMotion] = useState(false);
+    const[postTab,setPostTab] = useState(true);
+    const[findFriends,setBackground] = useState(false);
+    const[people,setPeople] = useState([])
+    const[token,setToken] = useState(null)
 
     const showNewClick = () => {
         setShowNew(!showNew)
@@ -40,6 +46,7 @@ function Posts() {
         const response = await fetch(url, config)
         const json = await response.json()
         const accessToken = json.access
+        setToken(accessToken);
         return getPosts(accessToken)
     }
     
@@ -61,55 +68,129 @@ function Posts() {
         login()
     }, [])
 
+    const getPeople = async () => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=100&offset=1';
+
+        const method = 'GET'; // method
+
+        const headers = new Headers({  // headers
+            'Authorization': `Bearer ${token}`,
+        });
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+
+
+        const newData = data.results.filter(item => {
+            if(item.avatar){
+                return item;
+            }
+        })
+
+        setPeople([...newData])
+                console.log(people)
+    }
+    
+    const handleGetPeople = () => {
+        login();
+        getPeople();
+    }
+
+    const handleSetMotion = () => {
+        setMotion(true)
+        setPostTab(false)
+        setBackground(false)
+    }
+
+    const handleSetPosts =() => {
+        setMotion(false)
+        setPostTab(true)
+        setBackground(false)
+    }
+
+    const handleSetFindFriends =() => {
+        setMotion(false)
+        setPostTab(false)
+        setBackground(true)
+    }
+
     return (
         <div>
-            <Header />
+            <Header 
+                handleSetMotion={handleSetMotion}
+                handleSetPosts={handleSetPosts}
+                handleSetFindFriends={handleSetFindFriends} 
+                handleGetPeople={handleGetPeople} 
+            />
             {showNew && <PublishContainer showNewClick={showNewClick} />}
-        <MainPostsDiv>
 
-            {postDetails.show && <PostDetails id={postDetails.id} closeDetails={postClickHandler}/>}
+            {postTab ?
+            <MainPostsDiv>
 
-
-            <PostsNavWrapper >
-
-                <SearchLabel >
-                    <img src={SearchIcon} alt="" />
-                    <input type="search" placeholder='Search Posts...' />
-                </SearchLabel>
-
-                <NavButtonWrapper >
-                    <button>Liked</button>
-                    <button>Friends</button>
-                    <button>Follow</button>
-                </NavButtonWrapper>
-            </PostsNavWrapper>
+                {postDetails.show && <PostDetails id={postDetails.id} closeDetails={postClickHandler}/>}
 
 
-            <PostDisplayWrapper  >
+                <PostsNavWrapper >
 
-            <Masonry
-            breakpointCols={2}
-            className="Posts-masonry-grid"
-            columnClassName="Posts-masonry-grid_column"
-            >
+                    <SearchLabel >
+                        <img src={SearchIcon} alt="" />
+                        <input type="search" placeholder='Search Posts...' />
+                    </SearchLabel>
 
-                <NewPost showNewClick={showNewClick} />
-                {posts.map((x) => {
-                if (x.images.length === 1) {return <ImagePost closeDetails={postClickHandler} id={x.id} key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
-                else if (x.images.length > 1) {return <GalleryPost closeDetails={postClickHandler} id={x.id}  key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
-                else {return <TextPost closeDetails={postClickHandler} id={x.id}  key={x.id} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
-                })}
-                {/* <TextPost />
-                <ImagePost />
-                <GalleryPost />
-                <RepostPost /> */}
-            </Masonry>
-            </PostDisplayWrapper>
+                    <NavButtonWrapper >
+                        <button>Liked</button>
+                        <button>Friends</button>
+                        <button>Follow</button>
+                    </NavButtonWrapper>
+                </PostsNavWrapper>
 
 
+                <PostDisplayWrapper  >
+
+                <Masonry
+                breakpointCols={2}
+                className="Posts-masonry-grid"
+                columnClassName="Posts-masonry-grid_column"
+                >
+
+                    <NewPost showNewClick={showNewClick} />
+                    {posts.map((x) => {
+                    if (x.images.length === 1) {return <ImagePost closeDetails={postClickHandler} id={x.id} key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
+                    else if (x.images.length > 1) {return <GalleryPost closeDetails={postClickHandler} id={x.id}  key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
+                    else {return <TextPost closeDetails={postClickHandler} id={x.id}  key={x.id} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
+                    })}
+                    {/* <TextPost />
+                    <ImagePost />
+                    <GalleryPost />
+                    <RepostPost /> */}
+                </Masonry>
+                </PostDisplayWrapper>
 
 
-        </MainPostsDiv>
+
+
+            </MainPostsDiv>
+            :null}
+            {findFriends ?
+                <BackgroundContainer>
+                    {Object.keys(people).length > 0 ?
+                        people.map((user,ind)=> {
+                            return (
+                                <ProfileCard key={ind} user={user}/>
+                            )
+
+                        })
+                    :
+                        null
+                    }
+                </BackgroundContainer>
+            :null}
+
         </div>
     )
 }

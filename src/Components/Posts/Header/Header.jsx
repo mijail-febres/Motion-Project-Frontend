@@ -8,30 +8,35 @@ import PostsIcon from '../../../Assets/images/posts_logo.png'
 const MasterHeader = (props) => {
 
     const[motion,setMotion] = useState(false);
-    const[posts,setPosts] = useState(false);
+    const[posts,setPosts] = useState(true);
     const[findFriends,setFindFriends] = useState(false);
 
     const NumberOfNotifications = 3;
 
-    const handleOnClickMotion = (props) => {
+    const handleOnClickMotion = () => {
         setMotion(true)
         setPosts(false)
         setFindFriends(false)
-        props.handleSetMotion();
+        if (props.handleSetMotion) {
+            props.handleSetMotion();
+        }
     }
-    const handleOnClickPosts = (props) => {
+    const handleOnClickPosts = () => {
         setMotion(false)
         setPosts(true)
         setFindFriends(false)
-        console.log(props)
-        props.handleSetPosts();
+        if (props.handleSetPosts) {
+            props.handleSetPosts();
+        }
     }
-    const handleOnClickFindFriends = (props) => {
+    const handleOnClickFindFriends = () => {
         setMotion(false)
         setPosts(false)
         setFindFriends(true)
-        props.handleGetPeople();
-        props.handleSetFindFriends();
+        if (props.handleSetFindFriends && props.handleSetFindFriends) {
+            props.handleGetPeople();
+            props.handleSetFindFriends();
+        }
     }
     const handleOnClickNotification = () => {
 
@@ -49,17 +54,17 @@ const MasterHeader = (props) => {
     return (
         <HeaderContainer>
             <div id='left'>
-                <div onClick={() => handleOnClickMotion(props)} className = 'DivButtons' id='Motion' 
+                <div onClick={handleOnClickMotion} className = 'DivButtons' id='Motion' 
                     style = {motion ? {borderBottom : '2px solid blue'}:{border : 'none'}}>
                     <button className='ButtonTop' id='ButtonMotion'></button>
                     <label>Motion</label>
                 </div>
-                <div onClick={()=>handleOnClickPosts(props)} className = 'DivButtons' id='Posts' 
+                <div onClick={handleOnClickPosts} className = 'DivButtons' id='Posts' 
                     style = {posts ? {borderBottom : '2px solid blue'}:{border : 'none'}}>
                     <button className='ButtonTop' id='ButtonPosts'></button>
                     <label>Posts</label>
                 </div>
-                <div onClick ={()=> handleOnClickFindFriends(props)} className = 'DivButtons' id='FindFriends'
+                <div onClick ={handleOnClickFindFriends} className = 'DivButtons' id='FindFriends'
                     style = {findFriends ? {borderBottom : '2px solid blue'}:{border :'none'}}>
                     <button className='ButtonTop' id='ButtonFindFriends'></button>
                     <label>Find Friends</label>
