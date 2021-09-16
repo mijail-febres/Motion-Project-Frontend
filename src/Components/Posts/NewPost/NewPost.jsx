@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Profile from '../../../Assets/images/users/jennifer.png'
+import Profile from '../../../Assets/images/users/blank-profile.png'
 import SendIcon from '../../../Assets/svgs/send_button.svg'
 import { PostWrapper } from '../../../Pages/Posts/PostsStyles'
 import {NewPostWrapper, NewPostInput, NewPostButton, NewPostInputDiv, NewPostProfileImg, NewPostButtonWrapper} from './NewPostStyle'

@@ -2,33 +2,29 @@ import React from 'react'
 import PostFooter from '../PostFooter/PostFooter'
 import PostHeader from '../PostHeader/PostHeader'
 import { PostWrapper, PostContentWrapper } from '../../../Pages/Posts/PostsStyles'
-import PHI1 from '../../../Assets/images/feedPics/image1.png'
-import PHI2 from '../../../Assets/images/feedPics/image2.png'
-import PHI3 from '../../../Assets/images/feedPics/image3.png'
-import PHI4 from '../../../Assets/images/feedPics/image4.png'
 import { GalleryPostWrapper, GalleryImageWrapper } from './GalleryPostStyles'
 
-function GalleryPost() {
+function GalleryPost(props) {
     return (
-        <PostWrapper>
-            <PostHeader />
+        <PostWrapper type={props.type} onClick={(e) => props.closeDetails(e, props.id)}>
+            <PostHeader firstName={props.user.first_name} lastName={props.user.last_name} time={props.time} />
 
         <PostContentWrapper>
             <GalleryPostWrapper >
-                <p>(THIS IS WHERE THE TEXT POST SHOULD GO. THIS WILL BE TAKEN FROM THE API)</p>
+                <p>{props.content}</p>
 
                 <GalleryImageWrapper >
-                    <img src={PHI1} alt="Post" />
-                    <img src={PHI2} alt="Post" />
-                    <img src={PHI3} alt="Post" />
+                    <img src={props.images[0].image} alt="Post" />
+                    <img src={props.images[1].image} alt="Post" />
+                    {props.images[2] && <img src={props.images[2].image} alt="Post" />}
                     {/* the overlay for the 4th image should be made dynamically with the API */}
-                    <img src={PHI4} alt="Post" />
+                    {props.images[3] && <img src={props.images[3].image} alt="Post" />}
                 </GalleryImageWrapper>
                 
             </GalleryPostWrapper>
         </PostContentWrapper>
 
-            <PostFooter />
+            {props.type === 'isShared' ? null : <PostFooter likes={props.likes} />}
         </PostWrapper>
     )
 }

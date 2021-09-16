@@ -7,20 +7,18 @@ import { ImagePostWrapper } from './ImagePostStyle'
 
 function ImagePost(props) {
 
-    console.log(props.type)
-
     return (
-        <PostWrapper type={props.type} >
-                <PostHeader />
+        <PostWrapper type={props.type} onClick={(e) => props.closeDetails(e, props.id)} >
+                <PostHeader firstName={props.user.first_name} lastName={props.user.last_name} time={props.time} />
 
             <PostContentWrapper>
                 <ImagePostWrapper >
-                    <p>(THIS IS WHERE THE TEXT PART OF THE POST SHOULD GO. THIS WILL BE TAKEN FROM THE API)</p>
-                    <img src={PlaceholderImage} alt="Post" />
+                    <p>{props.content}</p>
+                    <img src={props.images[0].image} alt="Post" />
                 </ImagePostWrapper>
             </PostContentWrapper>
 
-                {props.type === !'isShared' && <PostFooter />}
+                {props.type === 'isShared' ? null : <PostFooter likes={props.likes} />}
         </PostWrapper>
     )
 }
