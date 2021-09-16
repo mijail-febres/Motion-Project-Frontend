@@ -11,6 +11,7 @@ export const PostDetailsBlackout = styled.div`
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 9;
 `
 
 export const PostDetailsContainer = styled.div `
@@ -24,7 +25,7 @@ export const PostDetailsContainer = styled.div `
     position: fixed;
     display: flex;
     left: calc(50vw - (${width} / 2));
-    top: 10vh;
+    top: 15vh;
     width: ${width};
     height: auto;
     background-color: white;

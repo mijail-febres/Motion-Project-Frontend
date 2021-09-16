@@ -9,11 +9,13 @@ import MenuIcon from '../../../Assets/svgs/menu.svg'
 const HeaderContainer = styled.div `
     width: 100%;
     height: 10%;
+    left: 0;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 10;
+    z-index: 7;
     background-color: white;
 
     #left {

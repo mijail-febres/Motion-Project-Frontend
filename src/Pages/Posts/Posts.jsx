@@ -8,6 +8,8 @@ import SearchIcon from '../../Assets/svgs/search_icon.svg'
 import { MainPostsDiv, NavButtonWrapper, PostDisplayWrapper, PostsNavWrapper, SearchLabel } from './PostsStyles'
 import Masonry from 'react-masonry-css'
 import PostDetails from '../../Components/PostDetails/PostDetails'
+import Header from '../../Components/Posts/Header/Header'
+import PublishContainer from '../../Components/PublishSomething/PublishSomething'
 
 
 
@@ -16,6 +18,11 @@ import PostDetails from '../../Components/PostDetails/PostDetails'
 function Posts() {
     const [posts, setPosts] = useState([])
     const [postDetails, setPostDetails] = useState({show: false, id: null})
+    const [showNew, setShowNew] = useState(false)
+
+    const showNewClick = () => {
+        setShowNew(!showNew)
+    }
 
     const login = async () => {
         const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/'
@@ -55,9 +62,13 @@ function Posts() {
     }, [])
 
     return (
+        <div>
+            <Header />
+            {showNew && <PublishContainer showNewClick={showNewClick} />}
         <MainPostsDiv>
 
             {postDetails.show && <PostDetails id={postDetails.id} closeDetails={postClickHandler}/>}
+
 
             <PostsNavWrapper >
 
@@ -82,7 +93,7 @@ function Posts() {
             columnClassName="Posts-masonry-grid_column"
             >
 
-                <NewPost />
+                <NewPost showNewClick={showNewClick} />
                 {posts.map((x) => {
                 if (x.images.length === 1) {return <ImagePost closeDetails={postClickHandler} id={x.id} key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
                 else if (x.images.length > 1) {return <GalleryPost closeDetails={postClickHandler} id={x.id}  key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
@@ -99,6 +110,7 @@ function Posts() {
 
 
         </MainPostsDiv>
+        </div>
     )
 }
 
