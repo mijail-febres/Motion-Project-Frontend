@@ -32,7 +32,7 @@ function App() {
           {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
           {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
           <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
-          {/* <Switch>
+          <Switch>
             <Route path="/" exact component = { Login }>
               <Login />
             </Route>
@@ -45,7 +45,7 @@ function App() {
             <Route exact path="/signupverify" exact component = { SignUpVerifyPage }>
               <SignUpVerifyPage />
             </Route>
-          </Switch> */}
+          </Switch>
         </Router>
     </div>
   );

@@ -1,17 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import {SignInContainer, SignInButton} from './LoginFormStyle'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { userLogin } from '../../../Store/Actions/loginAction';
 
 
 function LoginForm() {
-    const [userInput, setUserInput] = useState('')
-    const [passwordInput, setPasswordInput] = useState('')
+    const [userInput, setUserInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(userInput)
-        console.log(passwordInput)
+        // console.log(userInput)
+        // console.log(passwordInput)
+        userLogin(userInput, passwordInput);
+
     }
 
     return (
