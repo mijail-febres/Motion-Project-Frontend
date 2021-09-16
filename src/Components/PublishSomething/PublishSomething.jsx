@@ -1,10 +1,11 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import sendButton from '../../Assets/svgs/send_button.svg';
 import linkIcon from '../../Assets/svgs/link_icon.svg';
 import pictureIcon from '../../Assets/svgs/upload_picture.svg';
 import profileIcon from '../../Assets/images/users/jennifer.png'
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateToken, getUserInfo } from '../actions';
 
 const PContainer = styled.div `
     * {
@@ -136,9 +137,27 @@ const PContainer = styled.div `
 
     }
 `
-const PublishContainer = ({label,value}) => {
+const tokenSelector = (state) => {
+    return state.token;
+}
 
+const PublishContainer = ({label,value}) => {
+    const[user,setUser] = useState('mijail.febres@gmail.com')
+    const[pass,setPass] = useState('algunpassword')
+    const[contentPost,setContent] = useState('')
     const [pictures, uploadPictures] = useState([]);
+
+    const dispatch = useDispatch();
+
+    const token = useSelector(tokenSelector);
+
+    useEffect(() => {
+        const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        if (token) {
+            dispatch(updateToken(token)) // updating token with hooks
+        }
+    }, []);
+
 
     const hiddenFileInput = React.useRef(null);
 
@@ -157,9 +176,71 @@ const PublishContainer = ({label,value}) => {
     }
 
     const handlePublishing = () => { // This passes photos, and a main comment to the publisher form
-        // Not implemented yet, waiting for a centralized store
+        login();
+        publish();
     }
 
+    const handleText = (event) => {
+        setContent(event.target.value);
+    }
+
+    const login = async () => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/';
+
+        const method = 'POST'; // method
+
+        const headers = new Headers({  // headers
+            'Content-type': 'application/json'
+        });
+
+        const body = {  // body
+            'email': user,
+            'password': pass,
+        }
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+            body : JSON.stringify(body)
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+        localStorage.setItem('auth-token', data.access); // store token
+        dispatch(updateToken(data.access)) // updating token with hooks
+
+    }
+
+    const publish = async () => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/social/posts/';
+
+        const method = 'POST'; // method
+
+        const headers = new Headers({  // headers
+            'Authorization': `Bearer ${token}`,
+        });
+
+        const formData = new FormData();
+
+        pictures.forEach(image => { // for pictures
+            formData.append('images',image)
+        })
+        formData.append('content', contentPost) // the content
+
+        const body = formData;
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+            body : body,
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+
+        dispatch(getUserInfo(data)) // updating token with middleware
+
+    }
     return (
         <PContainer>
             <div id='header'>
@@ -168,7 +249,7 @@ const PublishContainer = ({label,value}) => {
                 </div>
                 <div id='thoughts'>
                     <label htmlFor="textArea" id="ruleslabel"></label>
-                    <textarea id='textArea' rows='3' placeholder='Write something ...'></textarea>
+                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText}></textarea>
                 </div>
 
 
@@ -219,7 +300,7 @@ const PublishContainer = ({label,value}) => {
                     <button className = 'uploadButtons' id='uploadLink'></button>
                 </div>
                 <div id ='rightBottom'>
-                    <button className = 'uploadButtons' id='publish'></button>
+                    <button className = 'uploadButtons' id='publish' onClick={handlePublishing}></button>
                 </div>
             </div>
         </PContainer>
