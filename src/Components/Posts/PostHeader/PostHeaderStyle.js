@@ -5,13 +5,15 @@ export const PostHeaderWrapper = styled.div`
     height: 80px;
     display: grid;
     grid-template-rows: 50% 50%;
-    grid-template-columns: 60px auto auto 60px;
+    grid-template-columns: 45px auto 1fr 45px;
     align-items: center;
     width: 102%;
-
+    grid-column-gap: 2%;
 `
 
 export const HeaderProfileIcon = styled.img`
+    width: 100%;
+    border-radius: 50%;
     grid-row: 1 / 3;
     grid-column: 1;
 `

@@ -16,6 +16,7 @@ export const NewPostInputDiv = styled.div`
 `
 
 export const NewPostProfileImg = styled.img`
+    border-radius: 50%;
     width: 45px;
     height: 45px;
 `

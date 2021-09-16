@@ -4,16 +4,17 @@ import PostFooter from '../PostFooter/PostFooter'
 import PostHeader from '../PostHeader/PostHeader'
 import { TextPostBody } from './TextPostStyles'
 
-function TextPost() {
+function TextPost(props) {
+    console.log('~text post props', props)
     return (
-        <PostWrapper>
-                <PostHeader />
+        <PostWrapper type={props.type} onClick={(e) => props.closeDetails(e, props.id)}>
+                <PostHeader firstName={props.user.first_name} lastName={props.user.last_name} time={props.time} />
             <PostContentWrapper >
                 <TextPostBody >
-                    <p>(THIS IS WHERE THE TEXT POST SHOULD GO. THIS WILL BE TAKEN FROM THE API, ADD FONT HERE TOO)</p>
+                    <p>{props.content}</p>
                 </TextPostBody>
             </PostContentWrapper>
-                <PostFooter />
+                {props.type === 'isShared' ? null : <PostFooter likes={props.likes} />}
         </PostWrapper>
     )
 }

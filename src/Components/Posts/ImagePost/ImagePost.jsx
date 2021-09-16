@@ -5,19 +5,20 @@ import { PostWrapper, PostContentWrapper } from '../../../Pages/Posts/PostsStyle
 import PlaceholderImage from '../../../Assets/images/feedPics/large_image.png'
 import { ImagePostWrapper } from './ImagePostStyle'
 
-function ImagePost() {
+function ImagePost(props) {
+
     return (
-        <PostWrapper>
-                <PostHeader />
+        <PostWrapper type={props.type} onClick={(e) => props.closeDetails(e, props.id)} >
+                <PostHeader firstName={props.user.first_name} lastName={props.user.last_name} time={props.time} />
 
             <PostContentWrapper>
                 <ImagePostWrapper >
-                    <p>(THIS IS WHERE THE TEXT PART OF THE POST SHOULD GO. THIS WILL BE TAKEN FROM THE API)</p>
-                    <img src={PlaceholderImage} alt="Post" />
+                    <p>{props.content}</p>
+                    <img src={props.images[0].image} alt="Post" />
                 </ImagePostWrapper>
             </PostContentWrapper>
 
-                <PostFooter />
+                {props.type === 'isShared' ? null : <PostFooter likes={props.likes} />}
         </PostWrapper>
     )
 }
