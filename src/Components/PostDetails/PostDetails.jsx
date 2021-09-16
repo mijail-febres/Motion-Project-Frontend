@@ -8,12 +8,15 @@ import profileUser3 from '../../Assets/images/users/patricia.png'  // This shoul
 import editIcon from '../../Assets/svgs/edit_icon.svg'
 import deleteIcon from '../../Assets/svgs/trash_can_icon.svg'
 import {PostDetailsBlackout, PostDetailsContainer} from './PostDetailStyle'
+import EditContainer from '../PublishSomething/PublishSomething'
 
 
 
 const PostDetails = (props) =>{
     console.log('~ props', props)
     const [postDetails, setPostDetails] = useState({})
+    const [showEdit, setEdition] = useState(false);
+
     let images = []
     if (postDetails.images) {images = postDetails.images}
     console.log('~ images', images)
@@ -84,6 +87,8 @@ const PostDetails = (props) =>{
 
     const handleEdit = () => { // should open the form for publishing something (PublishSomething.jsx)
         //Not implemente yet
+        setEdition(!showEdit)
+
         menuShow(!isMenuShown);
     }
 
@@ -158,7 +163,13 @@ const PostDetails = (props) =>{
                     </div>
                 </div>
             </PostDetailsContainer>
-            <PostDetailsBlackout onClick={() => props.closeDetails()} />
+            <PostDetailsBlackout onClick={() => props.closeDetails() } zlevel ={'9'}/>
+            {showEdit?
+                <>
+                <EditContainer id = {props.id}/>
+                <PostDetailsBlackout onClick={() => props.closeDetails() } zlevel ={'9'}/>
+                </>
+            :null} 
         </div>
     )
 }

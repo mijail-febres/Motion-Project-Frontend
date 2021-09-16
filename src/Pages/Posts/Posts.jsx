@@ -69,7 +69,7 @@ function Posts() {
     }, [])
 
     const getPeople = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=100&offset=1';
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=150&offset=1';
 
         const method = 'GET'; // method
 
@@ -132,7 +132,7 @@ function Posts() {
             {postTab ?
             <MainPostsDiv>
 
-                {postDetails.show && <PostDetails id={postDetails.id} closeDetails={postClickHandler}/>}
+                {postDetails.show && <PostDetails id={postDetails.id} showNewClick={showNewClick} closeDetails={postClickHandler}/>}
 
 
                 <PostsNavWrapper >
@@ -176,7 +176,7 @@ function Posts() {
 
             </MainPostsDiv>
             :null}
-            {findFriends ?
+            {findFriends ?  // Find friends container
                 <BackgroundContainer>
                     {Object.keys(people).length > 0 ?
                         people.map((user,ind)=> {
