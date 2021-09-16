@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from '../../../Assets/images/users/jennifer.png'
+import Profile from '../../../Assets/images/users/blank-profile.png'
 import { PostHeaderWrapper, HeaderProfileIcon, HeaderName, PostTimestamp, SharedPost, HeaderMenuButton } from './PostHeaderStyle'
 
 function PostHeader (props) {
@@ -11,8 +11,8 @@ function PostHeader (props) {
     return (
         <PostHeaderWrapper>
             <HeaderProfileIcon src={Profile} alt="Profile" /> {/* this should be taken from the API later */}
-            <HeaderName>(POSTERS NAME HERE)</HeaderName>
-            <PostTimestamp>(POST TIMESTAMP)</PostTimestamp>
+            <HeaderName>{props.firstName} {props.lastName}</HeaderName>
+            <PostTimestamp>{props.time && props.time.substring(0, 10)}</PostTimestamp>
             {props.type === 'shared' && <SharedPost>shared a post</SharedPost> } {/* this only displays on shared posts */}
             <HeaderMenuButton onClick={onMenuClick} ></HeaderMenuButton>
         </PostHeaderWrapper>

@@ -4,7 +4,7 @@ import ShareIcon from '../../../Assets/svgs/share.svg'
 import { LikeCounter, PostFooterWrapper, FooterButton, FooterLabel } from './PostFooterStyles'
 
 
-function PostFooter() {
+function PostFooter(props) {
 
     const onLike = () => {
         console.log('LIKED POST')
@@ -25,7 +25,7 @@ function PostFooter() {
                 <span>Share</span>
             </FooterLabel>
 
-            <LikeCounter >(NR OF LIKES) likes</LikeCounter>
+            <LikeCounter >{props.likes === 1 ? `${props.likes} Like ` : `${props.likes} Likes`}</LikeCounter>
         </PostFooterWrapper>
     )
 }

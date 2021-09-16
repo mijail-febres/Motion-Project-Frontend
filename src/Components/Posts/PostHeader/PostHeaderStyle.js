@@ -13,6 +13,7 @@ export const PostHeaderWrapper = styled.div`
 
 export const HeaderProfileIcon = styled.img`
     width: 100%;
+    border-radius: 50%;
     grid-row: 1 / 3;
     grid-column: 1;
 `
