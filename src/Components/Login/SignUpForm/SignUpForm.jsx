@@ -1,7 +1,7 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 import { useState } from 'react';
-import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
+// import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import registrationAction from '../../../Store/Actions/registrationAction';
 
 function SignUpForm() {

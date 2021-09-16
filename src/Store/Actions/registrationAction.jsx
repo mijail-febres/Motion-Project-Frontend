@@ -1,11 +1,11 @@
 import { baseUrl } from "./loginAction";
-import { userLogin } from "./loginActionbak.bak";
+// import { userLogin } from "./loginActionbak.bak";
 import { USER_REGISTRATION } from "./actionTypes";
 
-const userRegistrationAction = email => ({
-    type: USER_REGISTRATION,
-    payload: email
-})
+// const userRegistrationAction = email => ({
+//     type: USER_REGISTRATION,
+//     payload: email
+// })
 
 const registrationAction = async email => {
     console.log('email')
