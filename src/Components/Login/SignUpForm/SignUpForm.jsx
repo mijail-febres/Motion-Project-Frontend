@@ -1,15 +1,17 @@
 import React from 'react';
-// import { useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { useState } from 'react';
 // import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import registrationAction from '../../../Store/Actions/registrationAction';
 
 function SignUpForm() {
+    const history = useHistory()
     const [email, setEmail] = useState('');
 
     const submitSignUp = async (e) => {
         e.preventDefault()
         registrationAction(email)
+        history.push('./signupconfirm')
     }
     
     return (
@@ -24,6 +26,7 @@ function SignUpForm() {
 
             <div className='buttonWrapper' >
                 <button onClick={submitSignUp}>Continue</button>
+                {/* <button onClick={handleClick}>Continue</button> */}
             </div>
 
 

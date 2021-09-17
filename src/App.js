@@ -1,4 +1,4 @@
-import CopyrightContainer from './Pages/Login/Copyright';
+import CopyrightContainer from './Components/Login/Copyright/Copyright';
 import MasterHeader from './Components/Posts/Header/Header';
 import Login from './Pages/Login/Login';
 import { GlobalStyle } from './Styles';
@@ -16,8 +16,6 @@ import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
 import NotificationsForm from './Components/NotificationsForm/NotificationsForm';
-import FindFriends from './Pages/Background/Background';
-import Background from './Pages/Background/Background';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
@@ -27,13 +25,12 @@ function App() {
       {/* <PostDetails/> */}
       <GlobalStyle />
         <Router>
-          <Posts />
-          {/* <PublishContainer/> */}
-          {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
-          {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
-          <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
-          {/* <Switch>
-            <Route path="/" exact component = { Login }>
+
+          <Switch>
+            <Route path='/' exact component = { Posts }>
+              <Posts />
+            </Route>
+            <Route path="/login" exact component = { Login }>
               <Login />
             </Route>
             <Route path="/signupform" exact component = { SignUpFormPage }>
@@ -45,7 +42,7 @@ function App() {
             <Route exact path="/signupverify" exact component = { SignUpVerifyPage }>
               <SignUpVerifyPage />
             </Route>
-          </Switch> */}
+          </Switch>
         </Router>
     </div>
   );

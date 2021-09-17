@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // import AppStoreLogo from '../Assets/svgs/apple.svg';
 // import GoogleStoreLogo from '../../Assets/svgs/google.svg';
 import MainBackground from '../../../Assets/images/background_image.png';
+import CopyrightContainer from '../Copyright/Copyright';
 
 // export const Title = styled.h1`
 //     font-size: 30px;
