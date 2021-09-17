@@ -10,6 +10,8 @@ export const SignInContainer = styled.form`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    align-self: center;
+
 
     & input {
         background-size: 30px;
