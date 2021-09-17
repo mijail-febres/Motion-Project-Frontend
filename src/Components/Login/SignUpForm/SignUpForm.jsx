@@ -4,6 +4,7 @@ import { useState } from 'react';
 // import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import registrationAction from '../../../Store/Actions/registrationAction';
 import { SignupFormStyles } from './SignUpFormStyles';
+import signUpButtonStyle from '../QuestionTop/questionTopStyle';
 
 function SignUpForm() {
     const history = useHistory()
@@ -27,7 +28,7 @@ function SignUpForm() {
             </div>
 
             <div className='buttonWrapper' >
-                <button onClick={submitSignUp}>Continue</button>
+                <signUpButtonStyle onClick={submitSignUp}>Continue</signUpButtonStyle>
                 {/* <button onClick={handleClick}>Continue</button> */}
             </div>
 

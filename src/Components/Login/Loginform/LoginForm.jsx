@@ -25,7 +25,7 @@ function LoginForm() {
     return (
         <SignInContainer >
             <h3>Sign In</h3>
-            <input type='text' placeholder='Username' onChange={(e) => setUserInput(e.target.value)} value={userInput} ></input>
+            <input type='text' placeholder='E-mail' onChange={(e) => setUserInput(e.target.value)} value={userInput} ></input>
             <input type="password" placeholder='Password' onChange={(e) => setPasswordInput(e.target.value)} value={passwordInput} ></input>
             <img src="../../" alt="" />
 

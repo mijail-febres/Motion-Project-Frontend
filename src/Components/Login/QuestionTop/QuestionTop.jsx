@@ -4,11 +4,12 @@ import signUpButtonStyle from "./questionTopStyle";
 import { useHistory } from "react-router-dom";
 
 const QContainer = styled.div `
-    width: 25%;
-    height: 5%;
-    border:1px dotted black;
     display: flex;
-    justify-content:space-between;
+    // border: $testBorder;
+    /* align-items: center; */
+    font-size: calc(#{$fontS} + 4px);
+    align-self: flex-end;
+    justify-self: flex-start;
 `
 
 
