@@ -20,6 +20,7 @@ export const PostDetailsContainer = styled.div `
         padding: 0;
         border: none;
         box-sizing: content-box;
+        overflow: hidden;
     }
     
     position: fixed;
@@ -27,9 +28,13 @@ export const PostDetailsContainer = styled.div `
     left: calc(50vw - (${width} / 2));
     top: 15vh;
     width: ${width};
-    height: auto;
+    height: calc(auto - 50px);
+    border-radius: 10px;
     background-color: white;
     z-index: 10;
+    border-radius: 5px;
+    box-shadow: 0 0 20px black;
+    padding: 4px 0 0 4px;
 
     #panelLeft {
         width : 60%;
@@ -39,18 +44,20 @@ export const PostDetailsContainer = styled.div `
         & p {
             font-weight: bold;
             font-size: 30px;
-            margin: 40% 40%;
+            margin: 40% 30%;
         }
 
         #pictureLeft {
             width: 100%;
+        border-radius: 10px;
+        margin-right: 10px;
             /* height: 100%; */
         }
     }
 
     #panelRight {
         width : 40%;
-        /* height: 100%; */
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -160,7 +167,7 @@ export const PostDetailsContainer = styled.div `
 
         #body {
             width: 100%;
-            height: 60%;
+            height: 40%;
         }
 
         #footer {

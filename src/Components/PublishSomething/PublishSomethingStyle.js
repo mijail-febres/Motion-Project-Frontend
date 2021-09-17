@@ -1,7 +1,7 @@
 import sendButton from '../../Assets/svgs/send_button.svg';
 import linkIcon from '../../Assets/svgs/link_icon.svg';
 import pictureIcon from '../../Assets/svgs/upload_picture.svg';
-import profileIcon from '../../Assets/images/users/jennifer.png'
+import profileIcon from '../../Assets/images/users/blank-profile.png'
 import styled from "styled-components";
 
 const width = '40%'
@@ -13,7 +13,7 @@ export const PublishBlackout = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 5;
+    z-index: 10;
 `
 
 export const PContainer = styled.div `
@@ -25,7 +25,7 @@ export const PContainer = styled.div `
     }
     width: ${width};
     background-color: white;
-    border:1px dotted black;
+    border:1px solid #e2e2e2;
     display: flex;
     position: fixed;
     left: calc(50vw - (${width} / 2));
@@ -34,6 +34,11 @@ export const PContainer = styled.div `
     justify-content: center;
     align-items: center;
     z-index: 11;
+    border-radius: 5px;
+    box-shadow: 0 0 20px black;
+    & > * {
+        /* border: red 2px solid; */
+    }
 
     #header {
         width: 100%;
@@ -48,19 +53,25 @@ export const PContainer = styled.div `
             align-items: center;
 
             #profile {
-                width: 30px;
-                height: 30px;
-                border-radius: 15px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
                 background-image: url(${profileIcon});
             }
         }
         #thoughts {
             width: 80%;
             #textArea {
+                margin-top: 2%;
                 width: 100%;
                 height: 100%;
                 max-height: 100%;
                 resize: none;
+                outline: none;
+
+                &:active{
+                    background-color: lightgray;
+                }
             }
         }
     }
@@ -77,6 +88,10 @@ export const PContainer = styled.div `
         border-radius: 15px;
         background-image: url(${sendButton});
         background-size: 60%;
+        background-color: lightgray;
+        &:hover {
+            background-color: #bf4bcf;
+        }
     }
 
     .uploadButtons {
