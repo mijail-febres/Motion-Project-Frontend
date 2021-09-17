@@ -3,17 +3,20 @@ import { useState } from 'react';
 import {SignInContainer, SignInButton} from './LoginFormStyle'
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { userLogin } from '../../../Store/Actions/loginAction';
+import { useHistory } from 'react-router';
 
 
 function LoginForm() {
     const [userInput, setUserInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
+    const history = useHistory();
 
     const submitHandler = async (e) => {
         e.preventDefault()
         // console.log(userInput)
         // console.log(passwordInput)
         userLogin(userInput, passwordInput);
+        history.push('/')
 
     }
 
