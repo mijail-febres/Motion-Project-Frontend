@@ -6,9 +6,9 @@ import {PContainer, PublishBlackout } from './PublishSomethingStyle';
 // }
 
 const PublishContainer = (props) => {
-    const[user,setUser] = useState('mijail.febres@gmail.com')
-    const[pass,setPass] = useState('algunpassword')
-    const[token,setToken] = useState(null)
+    // const[user,setUser] = useState('mijail.febres@gmail.com')
+    // const[pass,setPass] = useState('algunpassword')
+    // const[token,setToken] = useState(null)
     const[contentPost,setContent] = useState('')
     const[pictures, uploadPictures] = useState([]);
 
@@ -18,14 +18,15 @@ const PublishContainer = (props) => {
     // const token = useSelector(tokenSelector);
 
     useEffect(() => {
-        const token = localStorage.getItem('auth-token'); // get the token form localStorage
-        if (token) {
+        // const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        // if (token) {
             // dispatch(updateToken(token)) // updating token with hooks
-            setToken(token);
-            if (props.id) {
-                getPostDetails(token)
-            }
-        }
+            // setToken(token);
+            // if (props.id) {
+                console.log('~ props.token', props.token)
+                getPostDetails(props.token)
+            // }
+        // }
     }, []);
 
 
@@ -47,52 +48,55 @@ const PublishContainer = (props) => {
 
     const handlePublishing = () => { // This passes photos, and a main comment to the publisher form
         if (props.id) {
-            login();
+            // login();
         }
         publish();
     }
 
     const handleText = (event) => {
         setContent(event.target.value);
+        console.log('props.id', props.id)
     }
 
-    const login = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/';
+    // const login = async () => {
+    //     const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/';
 
-        const method = 'POST'; // method
+    //     const method = 'POST'; // method
 
-        const headers = new Headers({  // headers
-            'Content-type': 'application/json'
-        });
+    //     const headers = new Headers({  // headers
+    //         'Content-type': 'application/json'
+    //     });
 
-        const body = {  // body
-            'email': 'patrickmzimmermann@gmail.com',
-            'password': 'test123',
-        }
+    //     const body = {  // body
+    //         'email': 'patrickmzimmermann@gmail.com',
+    //         'password': 'test123',
+    //     }
 
-        const config = { // configuration
-            method : method,
-            headers: headers,
-            body : JSON.stringify(body)
-        }
+    //     const config = { // configuration
+    //         method : method,
+    //         headers: headers,
+    //         body : JSON.stringify(body)
+    //     }
 
-        const response = await fetch(url, config);  //fething
-        const data     = await response.json();  // getting the user
-        localStorage.setItem('auth-token', data.access); // store token
-        // dispatch(updateToken(data.access)) // updating token with hooks
-        setToken(data.access)
-    }
+    //     const response = await fetch(url, config);  //fething
+    //     const data     = await response.json();  // getting the user
+    //     localStorage.setItem('auth-token', data.access); // store token
+    //     // dispatch(updateToken(data.access)) // updating token with hooks
+    //     setToken(data.access)
+    // }
 
     const getPostDetails = async (locToken) => {
+    console.log('~ locToken', locToken)
         const url = `https://motion.propulsion-home.ch/backend/api/social/posts/${props.id}`
         const headers = new Headers({'Authorization': `Bearer ${locToken}`})
         const config = {headers,}
         const response = await fetch(url, config)
         const json = await response.json()
+        console.log('~ json', json)
         // console.log('~ json POST DETAILS', json)
         if (props.id) {
             setContent(json.content)
-            uploadPictures([...json.images])
+            json.images && uploadPictures([...json.images])
         }
     }
 
@@ -103,7 +107,7 @@ const PublishContainer = (props) => {
         const method = props.id ? 'PATCH' : 'POST'; // method
 
         const headers = new Headers({  // headers
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${props.token}`,
         });
 
         const formData = new FormData();
@@ -127,6 +131,8 @@ const PublishContainer = (props) => {
 
         const response = await fetch(url, config);  //fething
         const data     = await response.json();  // getting the user
+        console.log('~ data', data)
+        window.location.reload()
 
         // dispatch(getUserInfo(data)) // updating token with middleware
 
@@ -141,7 +147,8 @@ const PublishContainer = (props) => {
                 </div>
                 <div id='thoughts'>
                     <label htmlFor="textArea" id="ruleslabel"></label>
-                    <textarea id='textArea' rows='2' placeholder='Write something ...' onChange={handleText} value={contentPost }></textarea>
+                    {/* <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText} value={props.id ? contentPost : ''}></textarea> */}
+                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText} value={contentPost}></textarea>
                 </div>
 
 

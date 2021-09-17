@@ -1,4 +1,4 @@
-import CopyrightContainer from './Pages/Login/Copyright';
+import CopyrightContainer from './Components/Login/Copyright/Copyright';
 import MasterHeader from './Components/Posts/Header/Header';
 import Login from './Pages/Login/Login';
 import { GlobalStyle } from './Styles';
@@ -27,14 +27,12 @@ function App() {
     <div className="App">
       <GlobalStyle />
         <Router>
-          {/* <MainProfileCard/> */}
-          <Posts />
-          {/* <PublishContainer/> */}
-          {/* <MasterHeader NumberOfNotifications = {nNotif}/> */}
-          {/* <CopyrightContainer label={'Motion 2018. All rights reserved'}/>
-          <QuestionContainer label = {'Don\'t have an account'} value='SIGN UP'/> */}
-          {/* <Switch>
-            <Route path="/" exact component = { Login }>
+
+          <Switch>
+            <Route path='/' exact component = { Posts }>
+              <Posts />
+            </Route>
+            <Route path="/login" exact component = { Login }>
               <Login />
             </Route>
             <Route path="/signupform" exact component = { SignUpFormPage }>
@@ -46,7 +44,7 @@ function App() {
             <Route exact path="/signupverify" exact component = { SignUpVerifyPage }>
               <SignUpVerifyPage />
             </Route>
-          </Switch> */}
+          </Switch>
         </Router>
     </div>
   );

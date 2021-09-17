@@ -1,7 +1,12 @@
 import React from 'react'
 import checkMark from '../../../Assets/svgs/check-mark-circle-thin.svg'
+import { useHistory } from 'react-router';
 
 function SignUpConfirm() {
+    const history = useHistory();
+    const clickHandler = () => {
+        history.push('/signupverify')
+    }
     return (
         <div>
             <div className='instruction' >
@@ -15,7 +20,7 @@ function SignUpConfirm() {
             </div>
 
             <div className='buttonWrapper' >
-                <button>Continue</button>
+                <button onClick = { clickHandler }>Continue</button>
             </div>
 
 

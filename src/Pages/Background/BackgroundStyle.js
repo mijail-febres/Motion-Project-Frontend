@@ -4,9 +4,12 @@ const BackgroundContainer = styled.div `
     * {
         border: none;
         box-sizing: content-box;
+        /* margin: 20px 20px; */
+
     }
 
-    width: 100vw;
+    left: 0;
+    width: 100%;
     height: 85%;
     display: flex;
     justify-content: center;
