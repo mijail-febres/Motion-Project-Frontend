@@ -13,6 +13,7 @@ import { IconBorder1 } from './LeftsideStyle';
 import MotionLogo from '../../../Assets/images/logo_white.png';
 import AppStoreLogo from '../../../Assets/svgs/apple.svg';
 import GoogleStoreLogo from '../../../Assets/svgs/google.svg';
+import CopyrightContainer from '../Copyright/Copyright';
 
 const Leftside = () => {
     return (
@@ -39,6 +40,7 @@ const Leftside = () => {
                             <img src={ GoogleStoreLogo } alt="Googleappstorelogo" />
                         </IconBorder1>
                     </PageContainerMiddle>
+                    <CopyrightContainer />
                 </PageLeftContainer>
             </div>
         // </div>

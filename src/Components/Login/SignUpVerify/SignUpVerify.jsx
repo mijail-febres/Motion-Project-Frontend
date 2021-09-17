@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import validationAction from "../../../Store/Actions/validation";
+import { useHistory } from "react-router";
 
 function SignUpVerify() {
+
+    const history = useHistory();
+    const handleClick = () => {
+        history.push('/login')
+    }
 
     const [email, setEmail] = useState('');
     const [code, setValidtionCode] = useState('');
@@ -34,7 +40,8 @@ function SignUpVerify() {
             </div>
 
             <div className='buttonWrapper' >
-                <button onClick={submitVerify}>Continue</button>
+                {/* <button onClick={submitVerify}>Continue</button> */}
+                <button onClick={handleClick}>Continue</button>
             </div>
 
 
