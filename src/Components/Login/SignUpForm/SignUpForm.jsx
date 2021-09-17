@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { useState } from 'react';
 // import SignUpVerifyPage from '../../../Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import registrationAction from '../../../Store/Actions/registrationAction';
+import { SignupFormStyles } from './SignUpFormStyles';
 
 function SignUpForm() {
     const history = useHistory()
@@ -15,6 +16,7 @@ function SignUpForm() {
     }
     
     return (
+        <SignupFormStyles>
         <div>
             <div className='instruction' >
                 <h3>Sign Up</h3>
@@ -36,6 +38,7 @@ function SignUpForm() {
             </div>
             {/* this will become a progress bar */}
         </div>
+        </SignupFormStyles>
     )
 }
 
