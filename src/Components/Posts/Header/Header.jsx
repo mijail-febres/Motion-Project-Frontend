@@ -1,12 +1,11 @@
 // Header for the after-login sections
 import React, { useState } from "react";
 import HeaderContainer from './HeaderStyle'
-import FindFriendsIcon from '../../../Assets/svgs/icon-friends.svg'
-import MotionIcon from '../../../Assets/images/logo.png'
-import PostsIcon from '../../../Assets/images/posts_logo.png'
 import editIcon from '../../../Assets/svgs/edit_icon.svg'
 import logoutIcon from '../../../Assets/svgs/logout_icon.svg'
 import defaultAvatar from '../../../Assets/svgs/default_avatar.svg'
+import { logout} from '../../../Store/Actions/logoutAction';
+import { useEffect } from "react";
 
 const MasterHeader = (props) => {
 
@@ -14,6 +13,8 @@ const MasterHeader = (props) => {
     const[posts,setPosts] = useState(true);
     const[findFriends,setFindFriends] = useState(false);
     const[menu,setMenu] = useState(false);
+    const[token,setToken] = useState(null);
+    const[profile,setProfile] = useState(null);
 
     const NumberOfNotifications = 3;
 
@@ -61,7 +62,38 @@ const MasterHeader = (props) => {
     }
 
     const handleLogout = () => {
+        logout();
+    }
 
+    useEffect(() => {
+        const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        if (token) {
+            setToken(token);
+            getProfile(token)
+        } else {
+            setToken(props.token)
+            getProfile(props.token)
+        }
+    }, []);
+
+    const getProfile = async (token) => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/me/';
+
+        const method = 'GET'; // method
+
+        const headers = new Headers({  // headers
+            'Authorization': `Bearer ${token}`,
+        });
+
+        const config = { // configuration
+            method : method,
+            headers: headers,
+        }
+
+        const response = await fetch(url, config);  //fething
+        const data     = await response.json();  // getting the user
+        
+        setProfile(data)
     }
 
     return (
@@ -95,7 +127,11 @@ const MasterHeader = (props) => {
                     </button>
                 </div>
 
-                <button onClick={handleOnClickProfile} className='ButtonBottom' id='ButtonProfile'></button>
+                <button onClick={handleOnClickProfile} 
+                        className='ButtonBottom' 
+                        id='ButtonProfile'
+                        style = {{backgroundImage : `url(${profile ? defaultAvatar : null})`}}
+                        ></button>
                 <button onClick={handleOnClickMenu} className='ButtonBottom' id='ButtonMenu'></button>
                 {menu? // popup menu is or is not shown
                     <div id = 'popup-menu'>

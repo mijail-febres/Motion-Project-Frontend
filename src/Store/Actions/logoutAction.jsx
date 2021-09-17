@@ -1,6 +1,6 @@
 import { USER_LOGOUT } from "./actionTypes";
 
-const logout = () => {
+export const logout = () => {
     localStorage.clear();
     window.location.reload()
     // return {
@@ -9,4 +9,4 @@ const logout = () => {
     // }
 }
 
-export default logout
+// export default logout

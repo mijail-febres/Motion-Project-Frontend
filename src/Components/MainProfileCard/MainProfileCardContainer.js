@@ -12,7 +12,7 @@ const MainProfileCardContainer = styled.div `
 
     height: ${height};
     width : ${width};
-    margin : 100px 0px 0px 0px;
+    margin : 40px 0px 20px 0px;
     display: grid;
     grid-template-columns: 30% 40% 30%;
     grid-template-rows: 65% 35%;
@@ -57,6 +57,10 @@ const MainProfileCardContainer = styled.div `
         .Buttons { /* here the buttons should be formatted*/
             width: 100%;
             height: 35%;
+            background-color: white;
+            border: 1px solid rgba(0,0,0,0.3);
+            margin: 10px;
+            border-radius: 15px;
         }
         
     } /* end profile */
@@ -121,6 +125,7 @@ const MainProfileCardContainer = styled.div `
             .tagButtons {
                 width: 30%;
                 height: 25%;
+                border-radius: 20px;
                 display: flex;
                 justify-content: center;
                 align-items : center;

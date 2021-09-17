@@ -3,7 +3,7 @@ import MainProfileCardContainer from './MainProfileCardContainer';
 import { useEffect, useState } from 'react';
 import defaultAvatar from '../../Assets/svgs/default_avatar.svg'
 
-const MainProfileCard = () => {
+const MainProfileCard = (props) => {
 
     const[user,setUser] = useState('mijail.febres@gmail.com')
     const[pass,setPass] = useState('algunpassword')
@@ -11,10 +11,6 @@ const MainProfileCard = () => {
     const[profile,setProfile] = useState(null)
 
     let ownProfile =true; // this means that the profile will show its own account (you are not supposed to add/follow yourself)
-    const keyWords = ['MMA', 'travelling', 'Cooking', 'Guitar', 'Music'] // these tags should come from API
-    const profilePragraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco';
-    const statistics = ['Posts','Likes','Friends','Followers','Following']; // from api
-    const statisticsNumbers =[34, 256, 98,  129, 154]; // from api
 
     useEffect(() => {
         const token = localStorage.getItem('auth-token'); // get the token form localStorage
@@ -22,8 +18,8 @@ const MainProfileCard = () => {
             setToken(token);
             getProfile(token)
         } else {
-            login();
-            getProfile()
+            setToken(props.token)
+            getProfile(props.token)
         }
     }, []);
 

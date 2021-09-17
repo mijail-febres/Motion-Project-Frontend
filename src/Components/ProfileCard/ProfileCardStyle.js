@@ -45,6 +45,10 @@ const PostCardContainer = styled.div `
         .BodyButtons {
             width: 40%;
             height: 80%;
+            background-color: white;
+            border: 1px solid rgba(0,0,0,0.3);
+            margin: 10px;
+            border-radius: 15px;
         }
 
         #body-buttons{
@@ -80,6 +84,8 @@ const PostCardContainer = styled.div `
                 width: 30%;
                 height: 25%;
                 display: flex;
+                border-radius: 20px;
+                margin: 0px 10px;
                 justify-content: center;
                 align-items : center;            }
         }
