@@ -11,7 +11,7 @@ export const PostDetailsBlackout = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 9;
+    z-index: ${props => props.zlevel};
 `
 
 export const PostDetailsContainer = styled.div `
@@ -135,6 +135,7 @@ export const PostDetailsContainer = styled.div `
                 display: flex;
                 flex-direction: column;
                 left : 105%;
+                left : 5%;
 
                 .ButtonMenu {
                     height: 50%;

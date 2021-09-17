@@ -10,7 +10,8 @@ const PublishContainer = (props) => {
     const[pass,setPass] = useState('algunpassword')
     const[token,setToken] = useState(null)
     const[contentPost,setContent] = useState('')
-    const [pictures, uploadPictures] = useState([]);
+    const[pictures, uploadPictures] = useState([]);
+
 
     // const dispatch = useDispatch();
 
@@ -21,6 +22,9 @@ const PublishContainer = (props) => {
         if (token) {
             // dispatch(updateToken(token)) // updating token with hooks
             setToken(token);
+            if (props.id) {
+                getPostDetails(token)
+            }
         }
     }, []);
 
@@ -42,7 +46,9 @@ const PublishContainer = (props) => {
     }
 
     const handlePublishing = () => { // This passes photos, and a main comment to the publisher form
-        login();
+        if (props.id) {
+            login();
+        }
         publish();
     }
 
@@ -74,20 +80,37 @@ const PublishContainer = (props) => {
         const data     = await response.json();  // getting the user
         localStorage.setItem('auth-token', data.access); // store token
         // dispatch(updateToken(data.access)) // updating token with hooks
-        setToken(data.acces)
-
+        setToken(data.access)
     }
 
-    const publish = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/social/posts/';
+    const getPostDetails = async (locToken) => {
+        const url = `https://motion.propulsion-home.ch/backend/api/social/posts/${props.id}`
+        const headers = new Headers({'Authorization': `Bearer ${locToken}`})
+        const config = {headers,}
+        const response = await fetch(url, config)
+        const json = await response.json()
+        // console.log('~ json POST DETAILS', json)
+        if (props.id) {
+            setContent(json.content)
+            uploadPictures([...json.images])
+        }
+    }
 
-        const method = 'POST'; // method
+
+    const publish = async () => {
+        const url = `https://motion.propulsion-home.ch/backend/api/social/posts/${props.id? props.id + '/' : ''}`;
+
+        const method = props.id ? 'PATCH' : 'POST'; // method
 
         const headers = new Headers({  // headers
             'Authorization': `Bearer ${token}`,
         });
 
         const formData = new FormData();
+
+        if(props.id) {
+            formData.append('post_id',props.id)
+        }
 
         pictures.forEach(image => { // for pictures
             formData.append('images',image)
@@ -108,6 +131,7 @@ const PublishContainer = (props) => {
         // dispatch(getUserInfo(data)) // updating token with middleware
 
     }
+
     return (
         <div>
         <PContainer>
@@ -117,7 +141,7 @@ const PublishContainer = (props) => {
                 </div>
                 <div id='thoughts'>
                     <label htmlFor="textArea" id="ruleslabel"></label>
-                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText}></textarea>
+                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText} value={props.id ? contentPost : ''}></textarea>
                 </div>
 
 
@@ -133,7 +157,7 @@ const PublishContainer = (props) => {
                                     >
                                         <img 
                                             className = 'Thumbnail'
-                                            src={URL.createObjectURL(picture)} 
+                                            src={picture.hasOwnProperty('image')? picture.image : URL.createObjectURL(picture)} // this verifies if new post or modifying one 
                                             alt='thumbnail'
                                         />
                                     </div>
