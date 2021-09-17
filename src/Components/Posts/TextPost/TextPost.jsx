@@ -5,7 +5,7 @@ import PostHeader from '../PostHeader/PostHeader'
 import { TextPostBody } from './TextPostStyles'
 
 function TextPost(props) {
-    console.log('~text post props', props)
+    // console.log('~text post props', props)
     return (
         <PostWrapper type={props.type} onClick={(e) => props.closeDetails(e, props.id)}>
                 <PostHeader firstName={props.user.first_name} lastName={props.user.last_name} time={props.time} />

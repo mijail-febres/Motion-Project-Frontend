@@ -7,20 +7,14 @@ import {NewPostWrapper, NewPostInput, NewPostButton, NewPostInputDiv, NewPostPro
 
 function NewPost(props) {
 
-    const [user, setUser] = useState('TEST Jennifer')
-
-    const newPostHandler = () => {
-        console.log('New Post Popup Here!')
-    }
-
     return (
         <PostWrapper onClick={props.showNewClick} >
             <NewPostWrapper>
                 
             <NewPostProfileImg src={Profile} alt="Profile" /> {/* this should be taken from the API later */}
 
-            <NewPostInputDiv onClick={newPostHandler} >
-                <NewPostInput type="text" placeholder={`What's on your mind, ${user}?`} readOnly={true} />  {/* this is Read only because it should create a popup on click */}
+            <NewPostInputDiv >
+                <NewPostInput type="text" placeholder={`What's on your mind, ${props.user.first_name}?`} readOnly={true} />  {/* this is Read only because it should create a popup on click */}
                 <NewPostButtonWrapper>
                     <NewPostButton src={SendIcon} alt="Send Icon" />
                 </NewPostButtonWrapper>
