@@ -159,9 +159,10 @@ function Posts() {
                 handleSetFindFriends={handleSetFindFriends} 
                 handleGetPeople={handleGetPeople} 
                 handleShowProfile={handleShowProfile} 
+                token = {token}
             />
             
-            {showProfile && <MainProfileCard/>}
+            {showProfile && <MainProfileCard token={token}/>}
             {showNew && <PublishContainer token={token} showNewClick={showNewClick} />}
 
             {postTab ?

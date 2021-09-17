@@ -3,12 +3,12 @@ import MotionIcon from '../../../Assets/images/logo.png'
 import PostsIcon from '../../../Assets/images/posts_logo.png'
 import FindFriendsIcon from '../../../Assets/svgs/icon-friends.svg'
 import NotificationIcon from '../../../Assets/svgs/notification_bell.svg'
-import ProfileIcon from '../../../Assets/images/users/jennifer.png'
+// import ProfileIcon from '../../../Assets/images/users/jennifer.png'
 import MenuIcon from '../../../Assets/svgs/menu.svg'
 
 const HeaderContainer = styled.div `
     width: 100%;
-    height: 80px;
+    height: 60px;
     left: 0;
     top: 0;
     display: flex;
@@ -56,6 +56,7 @@ const HeaderContainer = styled.div `
         .ButtonBottom {
             width: 30px;
             height: 30px;
+            border-radius: 15px;
             background-color: white;
             border: none;
             background-repeat: no-repeat;
@@ -126,7 +127,7 @@ const HeaderContainer = styled.div `
         top : 0;
     }
     #ButtonProfile {
-        background-image: url(${ProfileIcon});
+        /* background-color: black; */
     }
     #ButtonMenu {
         background-image: url(${MenuIcon});
