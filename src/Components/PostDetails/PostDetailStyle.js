@@ -44,7 +44,7 @@ export const PostDetailsContainer = styled.div `
         & p {
             font-weight: bold;
             font-size: 30px;
-            margin: 40% 40%;
+            margin: 40% 30%;
         }
 
         #pictureLeft {
