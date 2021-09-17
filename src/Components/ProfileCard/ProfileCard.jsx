@@ -28,8 +28,8 @@ const ProfileCard = (props) => {
                         ADD FRIEND
                     </button>
                 </div>
-                <textarea id='textarea'>
-                    {props.user.about_me}
+                <textarea id='textarea' defaultValue={props.user.about_me} >
+                    {/* {props.user.about_me} */}
                 </textarea>
             </div>
 

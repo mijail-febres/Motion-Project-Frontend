@@ -17,6 +17,7 @@ import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 
 
 function Posts() {
+    const [me, setMe] = useState({})
     const [posts, setPosts] = useState([])
     const [postDetails, setPostDetails] = useState({show: false, id: null})
     const [showNew, setShowNew] = useState(false)
@@ -30,11 +31,22 @@ function Posts() {
         setShowNew(!showNew)
     }
 
+    const getUserInfo = async (accessToken) => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/me/'
+        const headers = new Headers({'Authorization': `Bearer ${accessToken}`})
+        const config = {headers,}
+        const response = await fetch(url, config)
+        const user = await response.json()
+        console.log('~ UserInfo: ', user)
+        setMe(user)
+
+    }
+
     const login = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/'
+        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/verify/'
+        const localToken = localStorage.getItem('token')
         const body = {
-            email: 'patrickmzimmermann@gmail.com',
-            password: 'test123',
+            token: localToken
         }
         const headers = new Headers({'Content-Type': 'application/json'})
         const method = 'POST'
@@ -44,10 +56,17 @@ function Posts() {
             body: JSON.stringify(body)
         }
         const response = await fetch(url, config)
-        const json = await response.json()
-        const accessToken = json.access
-        setToken(accessToken);
-        return getPosts(accessToken)
+        console.log('~ Posts page, API token Response: ', response.status)
+        if (response.status === 200) {
+            setToken(localToken)
+            getUserInfo(localToken)
+            return getPosts(localToken)
+        } else {
+
+            // THIS IS WHERE WE CAN RE ROUTE TO THE LOGIN IF NEEDED
+
+        }
+
     }
     
     const getPosts = async (accessToken) => {
@@ -69,7 +88,7 @@ function Posts() {
     }, [])
 
     const getPeople = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=150&offset=1';
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=30&offset=1';
 
         const method = 'GET'; // method
 
@@ -85,12 +104,14 @@ function Posts() {
         const response = await fetch(url, config);  //fething
         const data     = await response.json();  // getting the user
 
-
-        const newData = data.results.filter(item => {
-            if(item.avatar){
-                return item;
-            }
-        })
+        // filters out profiles without icons
+        //
+        // const newData = data.results.filter(item => {
+        //     if(item.avatar){
+        //         return item;
+        //     }
+        // })
+        const newData = data.results
 
         setPeople([...newData])
                 console.log(people)
@@ -120,19 +141,19 @@ function Posts() {
     }
 
     return (
-        <div>
+        <div style={{margin: '0'}}>
             <Header 
                 handleSetMotion={handleSetMotion}
                 handleSetPosts={handleSetPosts}
                 handleSetFindFriends={handleSetFindFriends} 
                 handleGetPeople={handleGetPeople} 
             />
-            {showNew && <PublishContainer showNewClick={showNewClick} />}
+            {showNew && <PublishContainer token={token} showNewClick={showNewClick} />}
 
             {postTab ?
             <MainPostsDiv>
 
-                {postDetails.show && <PostDetails id={postDetails.id} showNewClick={showNewClick} closeDetails={postClickHandler}/>}
+                {postDetails.show && <PostDetails token={token} id={postDetails.id} showNewClick={showNewClick} closeDetails={postClickHandler}/>}
 
 
                 <PostsNavWrapper >
@@ -158,7 +179,7 @@ function Posts() {
                 columnClassName="Posts-masonry-grid_column"
                 >
 
-                    <NewPost showNewClick={showNewClick} />
+                    <NewPost showNewClick={showNewClick} user={me} />
                     {posts.map((x) => {
                     if (x.images.length === 1) {return <ImagePost closeDetails={postClickHandler} id={x.id} key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}
                     else if (x.images.length > 1) {return <GalleryPost closeDetails={postClickHandler} id={x.id}  key={x.id} images={x.images} content={x.content} time={x.created} user={x.user} likes={x.amount_of_likes} />}

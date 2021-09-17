@@ -13,7 +13,6 @@ import EditContainer from '../PublishSomething/PublishSomething'
 
 
 const PostDetails = (props) =>{
-    console.log('~ props', props)
     const [postDetails, setPostDetails] = useState({})
     const [showEdit, setEdition] = useState(false);
 
@@ -22,25 +21,25 @@ const PostDetails = (props) =>{
     console.log('~ images', images)
     const [token, settoken] = useState('')
 
-    const login = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/'
-        const body = {
-            email: 'patrickmzimmermann@gmail.com',
-            password: 'test123',
-        }
-        const headers = new Headers({'Content-Type': 'application/json'})
-        const method = 'POST'
-        const config = {
-            method,
-            headers,
-            body: JSON.stringify(body)
-        }
-        const response = await fetch(url, config)
-        const json = await response.json()
-        const accessToken = json.access
-        settoken(accessToken)
-        return getPostDetails(accessToken)
-    }
+    // const login = async () => {
+    //     const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/'
+    //     const body = {
+    //         email: 'patrickmzimmermann@gmail.com',
+    //         password: 'test123',
+    //     }
+    //     const headers = new Headers({'Content-Type': 'application/json'})
+    //     const method = 'POST'
+    //     const config = {
+    //         method,
+    //         headers,
+    //         body: JSON.stringify(body)
+    //     }
+    //     const response = await fetch(url, config)
+    //     const json = await response.json()
+    //     const accessToken = json.access
+    //     settoken(accessToken)
+    //     return getPostDetails(accessToken)
+    // }
 
     const getPostDetails = async (accessToken) => {
         const url = `https://motion.propulsion-home.ch/backend/api/social/posts/${props.id}`
@@ -53,7 +52,7 @@ const PostDetails = (props) =>{
     }
 
     useEffect(()=> {
-        login()
+        getPostDetails(props.token)
     }, [])
 
 
@@ -166,7 +165,7 @@ const PostDetails = (props) =>{
             <PostDetailsBlackout onClick={() => props.closeDetails() } zlevel ={'9'}/>
             {showEdit?
                 <>
-                <EditContainer id = {props.id}/>
+                <EditContainer id = {props.id} token={props.token}/>
                 <PostDetailsBlackout onClick={() => props.closeDetails() } zlevel ={'9'}/>
                 </>
             :null} 
