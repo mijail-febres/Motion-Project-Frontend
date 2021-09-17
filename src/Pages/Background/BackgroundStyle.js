@@ -16,12 +16,8 @@ const BackgroundContainer = styled.div `
     align-items: center;
     flex-wrap: wrap;
     background-color: rgba(0,0,0,0.2);
-    margin: 0;
-    padding : 0 -20px;
-
-    & > * {
-        margin: 20px 20px;
-    }
+    margin: 50px 20px;
+    padding : '100px 20px';
 
     #rest {
         width: 100%;

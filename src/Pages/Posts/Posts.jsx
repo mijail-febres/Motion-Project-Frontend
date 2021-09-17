@@ -12,6 +12,7 @@ import Header from '../../Components/Posts/Header/Header'
 import PublishContainer from '../../Components/PublishSomething/PublishSomething'
 import BackgroundContainer from "../Background/BackgroundStyle";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
+import MainProfileCard from '../../Components/MainProfileCard/MainProfileCard'
 
 
 
@@ -24,8 +25,9 @@ function Posts() {
     const[motion,setMotion] = useState(false);
     const[postTab,setPostTab] = useState(true);
     const[findFriends,setBackground] = useState(false);
-    const[people,setPeople] = useState([])
-    const[token,setToken] = useState(null)
+    const[people,setPeople] = useState([]);
+    const[token,setToken] = useState(null);
+    const[showProfile,setProfile] = useState(false);
 
     const showNewClick = () => {
         setShowNew(!showNew)
@@ -84,14 +86,19 @@ function Posts() {
     }
 
     useEffect(() => {
-        login()
+        const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        console.log('is it', token)
+        if (token) {
+            setToken(token);
+        }
     }, [])
 
-    const getPeople = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=30&offset=1';
+    const getPeople = async (token) => {
+        const url = 'https://motion.propulsion-home.ch/backend/api/users/?limit=60&offset=130';
 
         const method = 'GET'; // method
 
+        console.log('tok',token)
         const headers = new Headers({  // headers
             'Authorization': `Bearer ${token}`,
         });
@@ -118,8 +125,7 @@ function Posts() {
     }
     
     const handleGetPeople = () => {
-        login();
-        getPeople();
+        getPeople(token);
     }
 
     const handleSetMotion = () => {
@@ -140,14 +146,21 @@ function Posts() {
         setBackground(true)
     }
 
+    const handleShowProfile = () => {
+        setProfile(!showProfile)
+    }
+
     return (
-        <div style={{margin: '0'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems : 'center'}}>
             <Header 
                 handleSetMotion={handleSetMotion}
                 handleSetPosts={handleSetPosts}
                 handleSetFindFriends={handleSetFindFriends} 
                 handleGetPeople={handleGetPeople} 
+                handleShowProfile={handleShowProfile} 
             />
+            
+            {showProfile && <MainProfileCard/>}
             {showNew && <PublishContainer token={token} showNewClick={showNewClick} />}
 
             {postTab ?

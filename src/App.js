@@ -16,13 +16,15 @@ import SignUpVerifyPage from './Pages/Signup/SignUpVerify/SignUpVerifyPage';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import MainProfileCard from './Components/MainProfileCard/MainProfileCard';
 import NotificationsForm from './Components/NotificationsForm/NotificationsForm';
+import FindFriends from './Pages/Background/Background';
+import Background from './Pages/Background/Background';
+import MainProfileCardContainer from './Components/MainProfileCard/MainProfileCardContainer';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
 function App() {
   return (
     <div className="App">
-      {/* <PostDetails/> */}
       <GlobalStyle />
         <Router>
 

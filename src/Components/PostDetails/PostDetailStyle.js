@@ -135,7 +135,7 @@ export const PostDetailsContainer = styled.div `
                 display: flex;
                 flex-direction: column;
                 left : 105%;
-                left : 5%;
+                /* left : 5%; */
 
                 .ButtonMenu {
                     height: 50%;
