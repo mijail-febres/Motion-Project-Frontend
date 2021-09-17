@@ -141,7 +141,7 @@ const PublishContainer = (props) => {
                 </div>
                 <div id='thoughts'>
                     <label htmlFor="textArea" id="ruleslabel"></label>
-                    <textarea id='textArea' rows='3' placeholder='Write something ...' onChange={handleText} value={props.id ? contentPost : ''}></textarea>
+                    <textarea id='textArea' rows='2' placeholder='Write something ...' onChange={handleText} value={contentPost }></textarea>
                 </div>
 
 

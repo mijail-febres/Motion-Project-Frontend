@@ -81,7 +81,7 @@ const Background = () => {
     }
 
     const handleGetPeople = () => {
-        login();
+        // login();
         getPeople();
     }
 

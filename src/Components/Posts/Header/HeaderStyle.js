@@ -51,6 +51,7 @@ const HeaderContainer = styled.div `
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        position: relative;
 
         .ButtonBottom {
             width: 30px;
@@ -61,6 +62,38 @@ const HeaderContainer = styled.div `
             background-position-x: center;
             background-position-y: center;
             background-size: contain;
+        }
+
+        #popup-menu {
+            width: 40%;
+            height: 80%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            right : -10%;
+            bottom : -80%;
+
+            .ButtonMenu {
+                height: 50%;
+                width: 40%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                align-self: center;
+                border : none;
+                :hover{
+                    cursor: pointer;
+                }
+                .MenuImg {
+                    height: 20px;
+                    width : 20px;
+                }
+            }
+            #edit {
+                border-bottom: 1px solid gray;
+            }
+
         }
     }
 

@@ -4,12 +4,16 @@ import HeaderContainer from './HeaderStyle'
 import FindFriendsIcon from '../../../Assets/svgs/icon-friends.svg'
 import MotionIcon from '../../../Assets/images/logo.png'
 import PostsIcon from '../../../Assets/images/posts_logo.png'
+import editIcon from '../../../Assets/svgs/edit_icon.svg'
+import logoutIcon from '../../../Assets/svgs/logout_icon.svg'
+import defaultAvatar from '../../../Assets/svgs/default_avatar.svg'
 
 const MasterHeader = (props) => {
 
     const[motion,setMotion] = useState(false);
     const[posts,setPosts] = useState(true);
     const[findFriends,setFindFriends] = useState(false);
+    const[menu,setMenu] = useState(false);
 
     const NumberOfNotifications = 3;
 
@@ -48,6 +52,15 @@ const MasterHeader = (props) => {
 
     }
     const handleOnClickMenu = () => {
+        setMenu(!menu);
+    }
+
+    const handleProfile = () => {
+        props.handleShowProfile();
+        setMenu(!menu);
+    }
+
+    const handleLogout = () => {
 
     }
 
@@ -84,6 +97,18 @@ const MasterHeader = (props) => {
 
                 <button onClick={handleOnClickProfile} className='ButtonBottom' id='ButtonProfile'></button>
                 <button onClick={handleOnClickMenu} className='ButtonBottom' id='ButtonMenu'></button>
+                {menu? // popup menu is or is not shown
+                    <div id = 'popup-menu'>
+                        <button className = 'ButtonMenu' id='edit' onClick={handleProfile}>
+                            <img className='MenuImg' src={editIcon} alt='icon' />
+                            Profile
+                        </button>
+                        <button className = 'ButtonMenu' id='delete' onClick={handleLogout}>
+                            <img className='MenuImg' src={logoutIcon} alt='icon'/>
+                            Logout
+                        </button>
+                    </div>
+                :null}
             </div>
         </HeaderContainer>
     )
