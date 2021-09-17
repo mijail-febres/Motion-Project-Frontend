@@ -52,6 +52,7 @@ const PostDetails = (props) =>{
     }
 
     useEffect(()=> {
+        settoken(props.token)
         getPostDetails(props.token)
     }, [])
 

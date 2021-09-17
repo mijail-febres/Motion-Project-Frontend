@@ -13,6 +13,7 @@ import PublishContainer from '../../Components/PublishSomething/PublishSomething
 import BackgroundContainer from "../Background/BackgroundStyle";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 import MainProfileCard from '../../Components/MainProfileCard/MainProfileCard'
+import {useHistory} from 'react-router-dom'
 
 
 
@@ -28,6 +29,7 @@ function Posts() {
     const[people,setPeople] = useState([]);
     const[token,setToken] = useState(null);
     const[showProfile,setProfile] = useState(false);
+    const history = useHistory()
 
     const showNewClick = () => {
         setShowNew(!showNew)
@@ -66,6 +68,7 @@ function Posts() {
         } else {
 
             // THIS IS WHERE WE CAN RE ROUTE TO THE LOGIN IF NEEDED
+            history.push('/login')
 
         }
 
@@ -87,10 +90,8 @@ function Posts() {
 
     useEffect(() => {
         const token = localStorage.getItem('auth-token'); // get the token form localStorage
-        console.log('is it', token)
-        if (token) {
-            setToken(token);
-        }
+        setToken(token);
+        login(token)
     }, [])
 
     const getPeople = async (token) => {
