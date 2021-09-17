@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon -->
+
+<svg
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 24 24"
+   enable-background="new 0 0 1000 1000"
+   xml:space="preserve"
+   id="svg12"
+   sodipodi:docname="default_avatar.svg"
+   width="24"
+   height="24"
+   inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs16" /><sodipodi:namedview
+   id="namedview14"
+   pagecolor="#505050"
+   bordercolor="#eeeeee"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="0"
+   showgrid="false"
+   width="24px"
+   inkscape:zoom="20.625"
+   inkscape:cx="12"
+   inkscape:cy="12"
+   inkscape:window-width="1366"
+   inkscape:window-height="704"
+   inkscape:window-x="0"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg12" />
+<metadata
+   id="metadata2"> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g
+   id="g10"
+   transform="matrix(0.02428571,0,0,0.02428571,-0.12801775,-0.10190618)"><path
+     d="m 337.9,370 c 0,93.7 75.9,169.6 169.6,169.6 93.7,0 169.6,-75.9 169.6,-169.6 0,-93.7 -75.9,-169.6 -169.6,-169.6 -93.6,-0.1 -169.6,75.9 -169.6,169.6 z"
+     id="path4" /><path
+     d="m 513.2,539.6 c -171.5,0 -311,139.5 -311,311 0,13.2 1.9,28.3 3.8,41.5 81,62.2 182.8,98 294,98 124.4,0 237.5,-47.1 322.3,-122.5 0,-5.7 0,-11.3 0,-17 1.9,-173.4 -137.6,-311 -309.1,-311 z"
+     id="path6" /><path
+     d="M 500,990 C 228.6,990 10,769.5 10,500 10,230.5 230.5,10 500,10 769.5,10 990,230.5 990,500 990,769.5 771.4,990 500,990 Z M 500,27 C 239.9,27 28.8,238 28.8,498.1 28.8,758.2 239.9,969.3 500,969.3 760.1,969.3 971.2,758.2 971.2,498.1 971.2,238 760.1,27 500,27 Z"
+     id="path8" /></g>
+</svg>
