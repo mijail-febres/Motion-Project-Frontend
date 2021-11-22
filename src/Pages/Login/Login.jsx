@@ -12,13 +12,17 @@ import Rightside from '../../Components/Login/Rightside/Rightside'
 function Login() {
     return (
         <div>
-                <BackgroundStyle>
-                    <Leftside />
-                    <Rightside>
-                        <QuestionContainer />
+            <BackgroundStyle>
+                <Leftside />
+                <Rightside>
+                    <div id='qContainer'>
+                        <QuestionContainer labelQuestion="Don't have an account?" labelButton="SIGN UP"/>
+                    </div>
+                    <div id='formContainer'>
                         <LoginForm />
-                    </Rightside>
-                </BackgroundStyle>
+                    </div>
+                </Rightside>
+            </BackgroundStyle>
         </div>
     );
 }

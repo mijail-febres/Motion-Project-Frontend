@@ -8,6 +8,18 @@ const Rightside = styled.div`
     justify-content: center;
     width: 60vw;
     height: 100%;
+    #qContainer {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    #formContainer {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+    }
 `
 
 export default Rightside;

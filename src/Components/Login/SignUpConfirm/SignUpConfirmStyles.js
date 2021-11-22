@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import mailIcon from '../../../Assets/svgs/mail.svg'
 
-export const SignupFormStyles = styled.div`
+export const SignUpConfirmStyles = styled.div`
     width: 60%;
     height: 50%;
     display: flex;
@@ -10,35 +9,17 @@ export const SignupFormStyles = styled.div`
     align-items: center;
     align-self: center;
 
-
-    & input {
-        background-size: 30px;
-        background-position-y: center;
-        background-position-x: 3%;
-        background-repeat: no-repeat;
-        background-color: white;
-        height: 50px;
-        padding: 0 50px;
-        border: none;
-        border-bottom: solid 2px gray;
-        margin-top: 2%;
-        font-size: 20px;
-        transition: 0.5s;
-    }
-    & input[type=text] {
-        background-image: url(${mailIcon});
-    }
-    & input:focus {
-    outline: none;
-    background-color: rgb(240, 240, 240);
-    }
     & h3 {
         margin-bottom: 3%;
         font-size: 30px;
         font-weight: bold;
     }
+
+    & p {
+        color: gray;
+    }
 `
-export const SignUpButton = styled.button`
+export const ContinueButton = styled.button`
     transition: 0.5s;
     width: 25%;
     height: 50px;

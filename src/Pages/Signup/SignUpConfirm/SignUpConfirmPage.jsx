@@ -8,12 +8,12 @@ import SignUpConfirm from '../../../Components/Login/SignUpConfirm/SignUpConfirm
 function SignUpConfirmPage() {
     return (
         <div>
-                <BackgroundStyle>
-                    <Leftside />
-                    <Rightside>
-                        <SignUpConfirm />
-                    </Rightside>
-                </BackgroundStyle>
+            <BackgroundStyle>
+                <Leftside />
+                <Rightside>
+                    <SignUpConfirm />
+                </Rightside>
+            </BackgroundStyle>
         </div>
     );
 }

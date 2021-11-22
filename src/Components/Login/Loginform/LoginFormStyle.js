@@ -61,7 +61,7 @@ export const SignInButton = styled.button`
     margin: 5% 0;
 
     &:hover {
-    cursor: pointer;
-    background-position: right center;
+        cursor: pointer;
+        background-position: right center;
     }
 `

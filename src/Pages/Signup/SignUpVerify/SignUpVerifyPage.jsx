@@ -7,12 +7,12 @@ import SignUpVerify from '../../../Components/Login/SignUpVerify/SignUpVerify'
 function SignUpVerifyPage() {
     return (
         <div>
-                <BackgroundStyle>
-                    <Leftside />
-                    <Rightside>
-                        <SignUpVerify />
-                    </Rightside>
-                </BackgroundStyle>
+            <BackgroundStyle>
+                <Leftside />
+                <Rightside>
+                    <SignUpVerify />
+                </Rightside>
+            </BackgroundStyle>
         </div>
     );
 }

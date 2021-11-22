@@ -3,16 +3,22 @@ import styled from 'styled-components'
 import Leftside from '../../../Components/Login/Leftside/Leftside'
 import Rightside from '../../../Components/Login/Rightside/Rightside'
 import SignUpForm from '../../../Components/Login/SignUpForm/SignUpForm'
+import QuestionContainer from '../../../Components/Login/QuestionTop/QuestionTop'
 
 function SignUpFormPage() {
     return (
         <div>
-                <BackgroundStyle>
-                    <Leftside />
-                    <Rightside>
+            <BackgroundStyle>
+                <Leftside />
+                <Rightside>
+                    <div id='qContainer'>
+                        <QuestionContainer labelQuestion="Already have an account?" labelButton="SIGN IN"/>
+                    </div>
+                    <div id='formContainer'>
                         <SignUpForm />
-                    </Rightside>
-                </BackgroundStyle>
+                    </div>
+                </Rightside>
+            </BackgroundStyle>
         </div>
     );
 }

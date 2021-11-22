@@ -1,29 +1,21 @@
 import React from "react";
-import styled from "styled-components";
-import signUpButtonStyle from "./questionTopStyle";
 import { useHistory } from "react-router-dom";
+import { QContainer } from "./QuestionTopStyle";
 
-const QContainer = styled.div `
-    width: 25%;
-    height: 5%;
-    border:1px dotted black;
-    display: flex;
-    justify-content:space-between;
-`
-
-
-
-const QuestionContainer = ({label,value}) => {
-        const history = useHistory();
-        const handleClick = () => {
+const QuestionContainer = (props) => {
+    const history = useHistory();
+    const handleClick = () => {
+        if (props.labelButton==='SIGN UP') {
             history.push('/signupform')
+        } else {
+            history.push('/login')
         }
+    }
 
     return (
         <QContainer>
-            <p>Don't have an account?</p>
-            <label>{label}</label>
-            <signUpButton onClick = { handleClick }>SIGN UP</signUpButton>
+            <p>{props.labelQuestion}</p>
+            <button id='signUpButton' onClick = { handleClick }>{props.labelButton}</button> 
         </QContainer>
     )
 }
