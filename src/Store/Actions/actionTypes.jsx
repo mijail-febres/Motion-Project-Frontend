@@ -1,3 +1,4 @@
+export const SEND_MAIL = "SEND_MAIL";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_REGISTRATION = "USER_REGISTRATION";

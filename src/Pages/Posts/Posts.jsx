@@ -15,20 +15,17 @@ import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 import MainProfileCard from '../../Components/MainProfileCard/MainProfileCard'
 import {useHistory} from 'react-router-dom'
 
-
-
-
 function Posts() {
     const [me, setMe] = useState({})
     const [posts, setPosts] = useState([])
     const [postDetails, setPostDetails] = useState({show: false, id: null})
     const [showNew, setShowNew] = useState(false)
-    const[motion,setMotion] = useState(false);
-    const[postTab,setPostTab] = useState(true);
-    const[findFriends,setBackground] = useState(false);
-    const[people,setPeople] = useState([]);
-    const[token,setToken] = useState(null);
-    const[showProfile,setProfile] = useState(false);
+    const [motion,setMotion] = useState(false);
+    const [postTab,setPostTab] = useState(true);
+    const [findFriends,setBackground] = useState(false);
+    const [people,setPeople] = useState([]);
+    const [token,setToken] = useState(null);
+    const [showProfile,setProfile] = useState(false);
     const history = useHistory()
 
     const showNewClick = () => {
@@ -89,9 +86,10 @@ function Posts() {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem('auth-token'); // get the token form localStorage
+        const token = localStorage.getItem('token'); // get the token form localStorage
+        console.log('tok',token)
         setToken(token);
-        login(token)
+        // login(token)
     }, [])
 
     const getPeople = async (token) => {
@@ -99,7 +97,6 @@ function Posts() {
 
         const method = 'GET'; // method
 
-        console.log('tok',token)
         const headers = new Headers({  // headers
             'Authorization': `Bearer ${token}`,
         });

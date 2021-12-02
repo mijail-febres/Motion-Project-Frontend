@@ -19,6 +19,7 @@ import NotificationsForm from './Components/NotificationsForm/NotificationsForm'
 import FindFriends from './Pages/Background/Background';
 import Background from './Pages/Background/Background';
 import MainProfileCardContainer from './Components/MainProfileCard/MainProfileCardContainer';
+import { LoginWrapper } from './Components/LoginWrapper/LoginWrapper';
 
 const nNotif = 10; // just to test how notifications are shown. This works nicely
 
@@ -29,9 +30,7 @@ function App() {
         <Router>
 
           <Switch>
-            <Route path='/' exact component = { Posts }>
-              <Posts />
-            </Route>
+            <Route path='/' exact component = { LoginWrapper(Posts) }/>
             <Route path="/login" exact component = { Login }>
               <Login />
             </Route>

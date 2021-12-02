@@ -9,7 +9,6 @@ export const userLoginAction = user => ({
 });
 
 export const userLogin = async (user, password) => {
-    console.log('ok')
     const headers = new Headers({
         'Content-Type': 'application/json'
     });
@@ -32,7 +31,6 @@ export const userLogin = async (user, password) => {
 
     if(response.status === 200) {
         const { access } = data;
-        console.log(access)
         localStorage.setItem('token', access)
         // dispatch(userLoginAction({ user: data, authenticated: true}));
         return null;

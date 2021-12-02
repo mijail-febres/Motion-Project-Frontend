@@ -11,15 +11,12 @@ function LoginForm() {
     const [passwordInput, setPasswordInput] = useState('');
     const history = useHistory();
 
-    const submitHandler = async (e) => {
+    const submitHandler = (e) => {
         e.preventDefault()
-        // console.log(userInput)
-        // console.log(passwordInput)
         userLogin(userInput, passwordInput);
         setTimeout(() => {
             history.push('/')
-        }, 1000)
-
+        },1000)
     }
 
     return (
