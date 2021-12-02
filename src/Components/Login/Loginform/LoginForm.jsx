@@ -16,7 +16,7 @@ function LoginForm() {
         userLogin(userInput, passwordInput);
         setTimeout(() => {
             history.push('/')
-        },1000)
+        },500)
     }
 
     return (

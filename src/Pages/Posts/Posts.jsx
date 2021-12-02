@@ -24,7 +24,7 @@ function Posts() {
     const [postTab,setPostTab] = useState(true);
     const [findFriends,setBackground] = useState(false);
     const [people,setPeople] = useState([]);
-    const [token,setToken] = useState(null);
+    const token = localStorage.getItem("token");
     const [showProfile,setProfile] = useState(false);
     const history = useHistory()
 
@@ -40,34 +40,6 @@ function Posts() {
         const user = await response.json()
         console.log('~ UserInfo: ', user)
         setMe(user)
-
-    }
-
-    const login = async () => {
-        const url = 'https://motion.propulsion-home.ch/backend/api/auth/token/verify/'
-        const localToken = localStorage.getItem('token')
-        const body = {
-            token: localToken
-        }
-        const headers = new Headers({'Content-Type': 'application/json'})
-        const method = 'POST'
-        const config = {
-            method,
-            headers,
-            body: JSON.stringify(body)
-        }
-        const response = await fetch(url, config)
-        console.log('~ Posts page, API token Response: ', response.status)
-        if (response.status === 200) {
-            setToken(localToken)
-            getUserInfo(localToken)
-            return getPosts(localToken)
-        } else {
-
-            // THIS IS WHERE WE CAN RE ROUTE TO THE LOGIN IF NEEDED
-            history.push('/login')
-
-        }
 
     }
     
@@ -86,10 +58,7 @@ function Posts() {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem('token'); // get the token form localStorage
-        console.log('tok',token)
-        setToken(token);
-        // login(token)
+        getPosts(token);
     }, [])
 
     const getPeople = async (token) => {
